@@ -38,6 +38,8 @@ namespace CustomListProj
             set { items[i] = value; }
         }
 
+
+        // Constructor
         public CustomList()
         {
             this.capcity = 4;
@@ -57,10 +59,10 @@ namespace CustomListProj
             
         }
 
-        public T[] Expander(T[] oldItems)
+        private T[] Expander(T[] oldItems)
         {
             T[] newItems = new T[count];
-            // Capcaity x 2
+            // Capacity x 2
             // count old T and 2X the size create =>
             // create a new tempT[] that 2x old T[]
             // copy old T to new EVEN BIGGER T[]
@@ -70,12 +72,12 @@ namespace CustomListProj
 
             return newItems;
         }
-        /*
-        public T[] Copy(T[], T[])
+        
+        private T[] Copy(T[], T[])
         {
-            // takes in array and coipies to other arrays
+            // takes in array and copies to other arrays
             return T[]
         }
-        */
+        
     }
 }
