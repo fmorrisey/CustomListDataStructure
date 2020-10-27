@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace CustomListProj
 {
@@ -75,8 +76,22 @@ namespace CustomListProj
 
         public void Remove(T item)
         {
+            /*
+            for (int i = 0; i < _capacity; i++)
+            {
+                if (item[i] == 0 )
+                {
 
+                }
+            }
+
+            foreach (T item in _items)
+            {
+
+            }
+            */
         }
+        
 
         private T[] Expander(T[] oldItems)
         {   // Expander Cycle Combustion Engine LoX/Methane
@@ -96,25 +111,59 @@ namespace CustomListProj
             return newItems;
         }
         
+        
+
         private T[] Copy(T[] oldItems, T[] newItems)
         {
             T[] transferItem = new T[_capacity];
+            try
+            {
+                for (int i = 0; i < (_capacity / 2); i++)
+                {
+                    transferItem[i] = oldItems[i];
+                }
+                for (int i = 0; i < _capacity; i++)
+                {
+                    newItems[i] = transferItem[i];
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+                throw;
+            }    
             
-            for (int i = 0; i < (_capacity / 2); i++)
-            {
-                transferItem[i] = oldItems[i];
-            }
-            for (int i = 0; i < _capacity; i++)
-            {
-                newItems[i] = transferItem[i];
-            }
 
             // takes in array and copies to other arrays
             
             return newItems;
         }
 
-        
-        
+        /*
+        public void Copy(int[] oldArray, int[] newArray, int length)
+        {
+            // takes in array and copies to other arrays
+            int[] transferItem = new int[length];
+            
+            try
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    transferItem[i] = oldArray[i];
+                }
+                for (int i = 0; i < _capacity; i++)
+                {
+                    newArray[i] = transferItem[i];
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw;
+            }
+            
+        }
+        */
+
+
     }
 }
