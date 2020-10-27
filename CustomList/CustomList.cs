@@ -76,22 +76,29 @@ namespace CustomListProj
 
         public void Remove(T item)
         {
-            /*
-            for (int i = 0; i < _capacity; i++)
+            int index = _count;
+
+            if (index >= 0)
             {
-                if (item[i] == 0 )
-                {
-
-                }
+                RemoveAt(index);
+                
             }
-
-            foreach (T item in _items)
-            {
-
-            }
-            */
+                        
         }
         
+        public void RemoveAt(int index)
+        {
+            if (index > _capacity)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            else if (index <= _capacity)
+            {
+                Copy(_items, index + 1, _items, index, _capacity - index);
+            }
+        }
+
 
         private T[] Expander(T[] oldItems)
         {   // Expander Cycle Combustion Engine LoX/Methane
@@ -113,7 +120,7 @@ namespace CustomListProj
         
         
 
-        private T[] Copy(T[] oldItems, T[] newItems)
+        private T[] Copy(T[] oldItems, T[] newItems) //called in exapander add
         {
             T[] transferItem = new T[_capacity];
             try
@@ -137,6 +144,33 @@ namespace CustomListProj
             // takes in array and copies to other arrays
             
             return newItems;
+        }
+
+        private bool Copy(T[] oldItems, int oldIndex, T[] newItems , int newIndex, int length)
+        {
+            T[] transferItem = new T[length];
+            try
+            {
+                for (int i = 0; i < length ; i++)
+                {
+                    transferItem[i] = oldItems[i];
+                }
+                for (int i = 0; i < length; i++)
+                {
+                    newItems[i] = transferItem[i];
+                }
+                return true;
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+                throw;
+            }
+
+
+            // takes in array and copies to other arrays
+
+            
         }
 
         /*

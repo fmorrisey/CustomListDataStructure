@@ -5,6 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CustomListUnitTester
 {
+    /// <summary>
+    /// Unit Testing created for Test Drive Development of for the
+    /// CustomList<T> Generics data structure.
+    /// 
+    /// /// FLAGGED!!! /// == FAILED TEST / Broken Code
+    /// /// PASSED!!! /// == PASSING TEST / Functional Code
+    /// 
+    /// </summary>
     [TestClass]
     public class UnitTest1
     {
@@ -228,6 +236,30 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
+        public void Remove_RemoveITEM_FromList_CountGoesDown()
+        {
+            // Arrange // Remove before expander //
+
+            //Create the list
+            CustomList<int> removeList = new CustomList<int>();
+
+            //Init vars
+            int expected = 3;
+            int actual;
+
+            //Add to list
+            removeList.Add(1);      // 0
+            removeList.Add(2);      // 1 
+            removeList.Add(3);      // 2 .Remove = 0
+            removeList.Add(4);      // 3 
+
+            removeList.Remove(2);   // Remove at i3
+            actual = removeList.Count;// count changes from 4 to 3
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_RemoveLastItem_FromList()
         {
@@ -256,7 +288,7 @@ namespace CustomListUnitTester
             // Remove before expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 4;
+            int expected = 7;
             int actual;
 
             // Act //
@@ -278,7 +310,7 @@ namespace CustomListUnitTester
             // Remove after expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 0;
+            int expected = 13;
             int actual;
 
             // Act //
