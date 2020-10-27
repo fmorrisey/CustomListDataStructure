@@ -132,7 +132,7 @@ namespace CustomListUnitTester
                                         // at the 4 iteration to an 8 sized array capacity
             }
 
-            actual = testList.Capacity;  //Returns the capacity value
+            actual = testList.Size;  //Returns the capacity value
 
             // Assert
             Assert.AreEqual(expected, actual);  // Value should be 8
@@ -164,37 +164,13 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual); // Must be 6
         }
 
-        ///////////////// COPY UNIT TEST /////////////////
-        [TestMethod] //FAILED REVERSE ENGINEER COPY TEST
-        public void Copy_CopyFromOneArrayToAnother()
-        {
-            // Arrange
-            
-            int[] arr1 = new int[4];
-
-            int[] actual = { 1, 2, 3, 4 };
-            int[] expected = { 1, 2, 3, 4 };
-
-            // Act
-            for (int i = 0; i < 4; i++)
-            {
-                arr1[i] = arr1[i];
-            }
-
-            //list2 = list1.Copy(list1, expected, 4);
-
-            // Assert
-            Assert.AreEqual(actual, expected);
-            
-        }
-
         ///////////////// REMOVE UNIT TEST /////////////////
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_AtFirstIndex_FromList()
         {   // Remove before expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 0;
+            int expected = 1;
             int actual;
             
             // Act //
@@ -211,7 +187,7 @@ namespace CustomListUnitTester
 
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAtSecond_FromList()
         {
             // Arrange // Remove before expander //
@@ -220,7 +196,7 @@ namespace CustomListUnitTester
             CustomList<int> removeList = new CustomList<int>();
 
             //Init vars
-            int expected = 0;
+            int expected = 3;
             int actual;
 
             //Add to list
@@ -229,8 +205,8 @@ namespace CustomListUnitTester
             removeList.Add(3);      // 2 .Remove = 0
             removeList.Add(4);      // 3 
 
-            removeList.Remove(2);   // Remove at 2
-            actual = removeList[2]; // Query at 2
+            removeList.Remove(1);   // Remove at 2
+            actual = removeList[1]; // Query at 2
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -260,13 +236,13 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList()
         {
             // Remove before expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 4;
+            int expected = 0;
             int actual;
 
             // Act //
@@ -282,7 +258,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAfterExpanderMethod_FromList()
         {
             // Remove before expander
@@ -297,20 +273,20 @@ namespace CustomListUnitTester
                 removeList.Add(i);  // Add values to _capacity 8
             }                       // [0][1][2][3][4][5][6][7]
 
-            removeList.Remove(7);   // Remove at last index
-            actual = removeList[7]; // Query at i7
+            removeList.Remove(6);   // Remove at last index
+            actual = removeList[6]; // Query at i7
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList_AfterExpanderCycle()
         {
             // Remove after expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 13;
+            int expected = 0;
             int actual;
 
             // Act //
@@ -327,7 +303,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem()
         {
             // Remove before expander
@@ -344,19 +320,46 @@ namespace CustomListUnitTester
             }                           // [0][1][2][0]
 
             removeList.Remove(2);       // Search Remove at 2
-            actual = removeList[2];     // Query at i3
+            actual = removeList[2];     // Query at i2
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
+        public void Remove_DoubleRemove()
+        {
+            // Remove before expander
+            // Arrange //
+            CustomList<int> removeList = new CustomList<int>();
+            int expected = 5;
+            int actual;
+            
+
+            // Act //
+            for (int i = 1; i < 8; i++)
+            {                           // creates a list with 3 values in
+                removeList.Add(i);      // an array with a _capacity of i4
+            }                           // [1][2][3][4][5][6][7][8]
+                                        // [1][3][4][6][7][8][0][0]
+                                        // [1][3][5][6][7][8][0][0]
+
+            removeList.Remove(2);       // Search Remove at 2
+            removeList.RemoveAt(2);     // Search Remove at 2
+            actual = removeList[2];     // Query at i2
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem_AfterExpanderCycle()
         {
             // Remove after expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 0;
+            int expected = 5;
             int actual;
             int item = 4;
 
@@ -367,9 +370,9 @@ namespace CustomListUnitTester
             }
 
             removeList.Remove(item);    // search Remove at 4
-            actual = removeList[5];     // Query at 5
-                                        // [0][1][2][3][4][5][6][7]
-            // Assert //
+            actual = removeList[4];     // Query at 4
+                                        // [0][1][2][3][5][6][0]
+            // Assert //                    0  1  2  3  4  5  6
             Assert.AreEqual(expected, actual);
         }
 

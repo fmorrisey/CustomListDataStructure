@@ -14,21 +14,21 @@ namespace CustomListProj
         // the _prefix is for private 
         private T[] _items;
         private int _count; //_size
-        private int _capacity;
+        private int _size;
         private int _nextIndex = 0;
 
         // Property
         public int Count { get { return _count; } }
-        public int Capacity { 
-            get { return _capacity; } 
-            set { _capacity = value; } 
+        public int Size { 
+            get { return _size; } 
+            set { _size = value; } 
         }
         
         public T this[int i] // Indexer 
         {
             get
             {
-                if (i >= 0)
+                if (i >= 0) // null
                 {
                     return _items[i];
                 }
@@ -45,8 +45,8 @@ namespace CustomListProj
         public CustomList()
         {
             
-            this._capacity = 4;
-            _items = new T[_capacity];
+            this._size = 4;
+            _items = new T[_size];
 
             this._count = 0;
             
@@ -62,76 +62,88 @@ namespace CustomListProj
             // if full call a copy expands array
             //if not full add to existing array
             //increment count and add to open slot
-            if (_nextIndex == _capacity)
+            if (_count == _size)
             {
                 _items = Expander(_items);
-                _items[_nextIndex++] = value;
+                _items[_count++] = value;
 
-            } else if (_nextIndex >= _count)
+            } else if (_count < _size)
             {
-                _items[_nextIndex++] = value;
+                _items[_count++] = value;
             }
-            _count++;
+            
         }
 
         public void Remove(T item)
         {
             int index = _count;
 
-            if (index >= 0)
+            for (int i = 0; i < _count; i++)
             {
-                RemoveAt(index);
-                
+                if (_items[i].Equals(item))
+                {
+                    RemoveAt(i);
+                    break;
+                }
+
             }
-                        
+
         }
         
         public void RemoveAt(int index)
         {
-            if (index > _capacity)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
 
-            else if (index <= _capacity)
+            try
             {
-                Copy(_items, index + 1, _items, index, _capacity - index);
+                
+                for (int i = index; i < _count; i++)
+                {
+                    if (i == _count - 1)
+                    {
+                        _items[i] = default;
+                    }
+                    else
+                    {
+                        _items[i] = _items[i + 1];
+                    }
+                }
             }
+            catch (IndexOutOfRangeException)
+            {
+
+                throw;
+            }
+            _count--;
+
+
         }
 
-
-        private T[] Expander(T[] oldItems)
+        private T[] Expander(T[] sourceData)
         {   // Expander Cycle Combustion Engine LoX/Methane
 
             // count old T and 2X the size create =>
-            // create a new tempT[] that 2x old T[]
-
-            _capacity = (_capacity * 2); // Capacity x 2
-            T[] newItems = new T[_capacity];
             
-            // copy old T to new EVEN BIGGER T[]
-            // Loop to iterate and copy old T[] to new T[]
-            // add across
-            // Copy Method
-            Copy(oldItems, newItems);
-
-            return newItems;
+            T[] destinationData = new T[_size * 2]; //Creates new array
+            destinationData = Copy(sourceData, _size, destinationData, _size * 2, _size); //copies old array to new
+            _size = (_size * 2); // doubles capacity
+            
+            return destinationData; //return
         }
-        
-        
-
-        private T[] Copy(T[] oldItems, T[] newItems) //called in exapander add
+                
+        private T[] Copy(T[] sourceData, T[] destinationData) //called in exapander add
         {
-            T[] transferItem = new T[_capacity];
+            // takes in array and copies to other arrays
+            T[] transferData = new T[_size];
+            
             try
             {
-                for (int i = 0; i < (_capacity / 2); i++)
+                for (int i = 0; i < (_size / 2); i++)
                 {
-                    transferItem[i] = oldItems[i];
+                    transferData[i] = sourceData[i];
                 }
-                for (int i = 0; i < _capacity; i++)
+                for (int i = 0; i < _size; i++)
                 {
-                    newItems[i] = transferItem[i];
+                    destinationData[i] = transferData[i];
                 }
             }
             catch (IndexOutOfRangeException)
@@ -140,26 +152,23 @@ namespace CustomListProj
                 throw;
             }    
             
-
-            // takes in array and copies to other arrays
-            
-            return newItems;
+            return destinationData;
         }
 
-        private bool Copy(T[] oldItems, int oldIndex, T[] newItems , int newIndex, int length)
+        private T[] Copy(T[] sourceData, int sourceIndex, T[] destinationData , int destinationIndex, int length)
         {
-            T[] transferItem = new T[length];
+            T[] transferData = new T[length];
             try
             {
                 for (int i = 0; i < length ; i++)
                 {
-                    transferItem[i] = oldItems[i];
+                    transferData[i] = sourceData[i];
                 }
                 for (int i = 0; i < length; i++)
                 {
-                    newItems[i] = transferItem[i];
+                    destinationData[i] = transferData[i];
                 }
-                return true;
+                
             }
             catch (IndexOutOfRangeException)
             {
@@ -167,37 +176,10 @@ namespace CustomListProj
                 throw;
             }
 
-
+            return destinationData;
             // takes in array and copies to other arrays
 
             
         }
-
-        /*
-        public void Copy(int[] oldArray, int[] newArray, int length)
-        {
-            // takes in array and copies to other arrays
-            int[] transferItem = new int[length];
-            
-            try
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    transferItem[i] = oldArray[i];
-                }
-                for (int i = 0; i < _capacity; i++)
-                {
-                    newArray[i] = transferItem[i];
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-                throw;
-            }
-            
-        }
-        */
-
-
     }
 }

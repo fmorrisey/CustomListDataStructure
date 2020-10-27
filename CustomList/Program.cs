@@ -11,10 +11,10 @@ namespace CustomListProj
     {
         static void Main(string[] args)
         {
-            /*
+            
             CustomList<string> strList = new CustomList<string>();
             
-            for (int i = 0; i < strList.Capacity; i++)
+            for (int i = 0; i < strList.Size; i++)
             {
                 string str = "Hello";
                 strList.Add(str);
@@ -35,17 +35,19 @@ namespace CustomListProj
             {
                 addList.Add(i);
             }
-            */
+            
 
             CustomList<int> removeList = new CustomList<int>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 16; i++)
             {
                 removeList.Add(i);
             }
 
-            removeList.Remove(1);
+            removeList.Remove(5);
+            removeList.RemoveAt(5);
 
+            Console.WriteLine("");
             
 
 
