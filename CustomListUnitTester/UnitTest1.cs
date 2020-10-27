@@ -103,7 +103,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        // Once you have three send to instructor
+        
         ///////////////// CAPACITY AND COUNT UNIT TEST /////////////////
 
         [TestMethod][AddMethodTests] /// PASSED!!! ///
@@ -130,7 +130,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);  // Value should be 8
         }
 
-        [TestMethod][AddMethodTests] /// FLAGGED!!! ///
+        [TestMethod][AddMethodTests] /// PASSED!!! ///
         public void Count_ItterateThruListForCount()
         {
             // Arrange
@@ -181,7 +181,7 @@ namespace CustomListUnitTester
         }
 
         ///////////////// REMOVE UNIT TEST /////////////////
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_AtFirstIndex_FromList()
         {   // Remove before expander
             // Arrange //
@@ -203,7 +203,7 @@ namespace CustomListUnitTester
 
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_RemoveAtSecond_FromList()
         {
             // Arrange // Remove before expander //
@@ -228,7 +228,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_RemoveLastItem_FromList()
         {
             // Remove before expander
@@ -250,7 +250,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_RemoveAfterExpanderMethod_FromList()
         {
             // Remove before expander
@@ -272,7 +272,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_RemoveLastItem_FromList_AfterExpanderCycle()
         {
             // Remove after expander
@@ -295,7 +295,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_SearchAndRemoveItem()
         {
             // Remove before expander
@@ -318,7 +318,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests]
+        [TestMethod][RemoveMethodTests] /// FLAGGED!!! ///
         public void Remove_SearchAndRemoveItem_AfterExpanderCycle()
         {
             // Remove after expander
