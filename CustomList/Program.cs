@@ -11,8 +11,10 @@ namespace CustomListProj
         static void Main(string[] args)
         {
             CustomList<int> customList = new CustomList<int>();
-            customList.Add(1);
-            customList.Add(2);
+            for (int i = 0; i < 14; i++)
+            {
+                customList.Add(i);
+            }
             
         }
     }

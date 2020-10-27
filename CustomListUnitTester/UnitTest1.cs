@@ -13,13 +13,32 @@ namespace CustomListUnitTester
         {
             // Arrange
             CustomList<int> testList = new CustomList<int>();
-            int item = 10;
-            int expected = 10;
+            int item = 2;
+            int expected = 2;
             int actual;
 
             // Act
             testList.Add(item);
             actual = testList[0]; // error expected until "indexer property" is added to class
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod] /// FLAGGED!!! /// INIT CHECKED dCC Inst MH
+        public void Add_AddItemTwoIemsToList_CheckSecondItem()
+        {
+            // Arrange
+            CustomList<int> testList = new CustomList<int>();
+            int item0 = 2;
+            int item1 = 2;
+            int expected = 2;
+            int actual;
+
+            // Act
+            testList.Add(item0);
+            testList.Add(item1);
+            actual = testList[1]; // error expected until "indexer property" is added to class
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -36,7 +55,7 @@ namespace CustomListUnitTester
 
             // Act
             testList.Add(item);
-            actual = testList.Count; // error expected until "Count" is added to class
+            actual = testList.Count; 
 
             // Assert
             Assert.AreEqual(expected, actual);

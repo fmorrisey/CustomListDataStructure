@@ -12,7 +12,7 @@ namespace CustomListProj
         // _Private Member Variables
         // the _prefix is for private 
         private T[] _items;
-        private int _count;
+        private int _count; //_size
         private int _capacity;
         private int _nextIndex = 0;
 
@@ -27,7 +27,7 @@ namespace CustomListProj
         {
             get
             {
-                if (i >= 0 && i < _count)
+                if (i >= 0)
                 {
                     return _items[i];
                 }
@@ -46,31 +46,31 @@ namespace CustomListProj
             
             this._capacity = 4;
             _items = new T[_capacity];
+
+            this._count = 0;
+            
         }
         
         public void Add(T value)
         {
-            
-                        
-            // take in single item
-            // Add an item the preExsisting array
-            // check array size
+            /// take in single item
+            /// Add an item the preExsisting array
+            /// check array size
             // count equals capacity
-            //array is full
+            // array is full
             // if full call a copy expands array
             //if not full add to existing array
             //increment count and add to open slot
+            if (_nextIndex == _capacity)
+            {
+                _items = Expander(_items);
+                _items[_nextIndex++] = value;
 
-            if (_nextIndex >= _count)
+            } else if (_nextIndex >= _count)
             {
                 _items[_nextIndex++] = value;
             }
-                
-            
-                
-            
-            
-            
+            _count++;
         }
 
         public void Remove(T item)
@@ -79,15 +79,14 @@ namespace CustomListProj
         }
 
         private T[] Expander(T[] oldItems)
-        {
-            T[] newItems = new T[_count];
-            // Capacity x 2
-            if (_count > 4)
-            {
+        {   // Expander Cycle Combustion Engine LoX/Methane
 
-            }
             // count old T and 2X the size create =>
             // create a new tempT[] that 2x old T[]
+
+            _capacity = (_capacity * 2); // Capacity x 2
+            T[] newItems = new T[_capacity];
+            
             // copy old T to new EVEN BIGGER T[]
             // Loop to iterate and copy old T[] to new T[]
             // add across
@@ -97,10 +96,18 @@ namespace CustomListProj
             return newItems;
         }
         
-        private T[] Copy(T[] oldItem, T[] newItems)
+        private T[] Copy(T[] oldItems, T[] newItems)
         {
-            newItems = new T[_capacity];
             T[] transferItem = new T[_capacity];
+            
+            for (int i = 0; i < (_capacity / 2); i++)
+            {
+                transferItem[i] = oldItems[i];
+            }
+            for (int i = 0; i < _capacity; i++)
+            {
+                newItems[i] = transferItem[i];
+            }
 
             // takes in array and copies to other arrays
             
