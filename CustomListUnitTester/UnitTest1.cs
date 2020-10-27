@@ -30,7 +30,7 @@ namespace CustomListUnitTester
         {
             // Arrange
             CustomList<int> testList = new CustomList<int>();
-            int item = 10;
+            int item = 1;
             int expected = 1;
             int actual;
 
@@ -96,14 +96,14 @@ namespace CustomListUnitTester
             int actual;
 
             // Act
-            for (int i = 0; i < 6; i++) // Count to 6, activate double capacity 
+            for (int i = 0; i < 5; i++) // Count to 5, activate double capacity 
             {
                 testList.Add(i);        // Adds the iterator to new array spots
                                         // This will force expander method to activate
                                         // at the 4 iteration to an 8 sized array capacity
             }
 
-            actual = testList.Capcity;  //Returns the capacity value
+            actual = testList.Capacity;  //Returns the capacity value
 
             // Assert
             Assert.AreEqual(expected, actual);  // Value should be 8
@@ -132,7 +132,7 @@ namespace CustomListUnitTester
             actual = countList.Count;
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); // Must be 6
 
         }
 
@@ -140,9 +140,56 @@ namespace CustomListUnitTester
         // REMOVE TESTS:
 
         [TestMethod]
-        public void Remove_RemoveAMatchingItem_FromList()
+        public void Remove_RemoveAtSpecifiedIndex_FromList()
         {
+            // Arrange //
+
+            //Create the list
+            CustomList<int> removeList = new CustomList<int>();
+
+            //Init vars
+            int expected = 0;
+            int actual;
+
+            //Add to list
+            removeList.Add(1); // 0
+            removeList.Add(2); // 1
+            removeList.Add(3); // 2
+            removeList.Add(4); // 3
+
+            removeList.Remove(1);
+            actual = removeList[1];
+
+            // Assert
+            Assert.AreEqual(expected, actual);
 
         }
+
+        public void Remove_RemoveAMatchingItem_FromList()
+        {
+            // Arrange //
+
+            //Create the list
+            CustomList<int> removeList = new CustomList<int>();
+
+            //init vars
+            int expected = 0;
+            int actual;
+
+            //Add to list
+            removeList.Add(1); // 0
+            removeList.Add(2); // 1
+            removeList.Add(3); // 2
+            removeList.Add(4); // 3
+
+            removeList.Remove(1);
+            actual = removeList[1]; // Search and remove
+                        
+            // Assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
     }
 }
