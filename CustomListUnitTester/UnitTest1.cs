@@ -1,6 +1,4 @@
-﻿using System;
-using System.Dynamic;
-using CustomListProj;
+﻿using CustomListProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CustomListUnitTester
@@ -17,7 +15,8 @@ namespace CustomListUnitTester
     public class UnitTest1
     {
         ///////////////// ADD METHODS UNIT TEST /////////////////
-        [TestMethod][AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
         public void Add_AddItemToEmptyList_ItemGoesToIndexZero()
         {
             // Arrange
@@ -34,7 +33,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
         public void Add_AddItemTwoIemsToList_CheckSecondItem()
         {
             // Arrange
@@ -53,7 +53,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
         public void Add_AddItemToEmptyList_CountIncrementsToOne()
         {
             // Arrange
@@ -70,7 +71,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][AddMethodTests] /// PASSED!!! /// INIT 
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! /// INIT 
         public void Add_PositionOfItem_InPreExisitngArray()
         {
             // Purpose: What if I .Add to a list that has a 
@@ -91,7 +93,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual); // Must be 3
         }
 
-        [TestMethod][AddMethodTests] /// PASSED!!! /// INIT
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! /// INIT
         public void Add_ValueOfCount_InPreExsitingArray()
         {
             // Purpose: What if I .Add to a list that has a 
@@ -111,10 +114,11 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        
+
         ///////////////// CAPACITY AND COUNT UNIT TEST /////////////////
 
-        [TestMethod][AddMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! ///
         public void Doubles_Capacity()
         {
             // Purpose/Goal: How does the capacity changes as you add things? (Starts at 4, and doubles?)
@@ -138,7 +142,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);  // Value should be 8
         }
 
-        [TestMethod][AddMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [AddMethodTests] /// PASSED!!! ///
         public void Count_ItterateThruListForCount()
         {
             // Arrange
@@ -165,14 +170,15 @@ namespace CustomListUnitTester
         }
 
         ///////////////// REMOVE UNIT TEST /////////////////
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_AtFirstIndex_FromList()
         {   // Remove before expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
             int expected = 1;
             int actual;
-            
+
             // Act //
             for (int i = 0; i < 4; i++)
             {
@@ -187,7 +193,8 @@ namespace CustomListUnitTester
 
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAtSecond_FromList()
         {
             // Arrange // Remove before expander //
@@ -236,7 +243,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList()
         {
             // Remove before expander
@@ -258,7 +266,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAfterExpanderMethod_FromList()
         {
             // Remove before expander
@@ -280,7 +289,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList_AfterExpanderCycle()
         {
             // Remove after expander
@@ -303,7 +313,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem()
         {
             // Remove before expander
@@ -328,6 +339,34 @@ namespace CustomListUnitTester
 
         [TestMethod]
         [RemoveMethodTests] /// PASSED!!! ///
+        public void Remove_SearchAndRemove_MatchingString()
+        {
+            // Remove before expander
+            // Arrange //
+            CustomList<string> strList = new CustomList<string>();
+
+            
+            string expected = "Hello 2";
+            string actual;
+
+            // Act //
+
+            for (int i = 0; i < strList.Size; i++)
+            {
+                string str = ($"Hello {i}");
+                strList.Add(str);
+
+            }
+            
+            strList.Remove("Hello 1");       // Search Remove at 2
+            actual = strList[1];            // Query at i2
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_DoubleRemove()
         {
             // Remove before expander
@@ -335,7 +374,7 @@ namespace CustomListUnitTester
             CustomList<int> removeList = new CustomList<int>();
             int expected = 5;
             int actual;
-            
+
 
             // Act //
             for (int i = 1; i < 8; i++)
@@ -353,7 +392,8 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem_AfterExpanderCycle()
         {
             // Remove after expander
@@ -372,7 +412,7 @@ namespace CustomListUnitTester
             removeList.Remove(item);    // search Remove at 4
             actual = removeList[4];     // Query at 4
                                         // [0][1][2][3][5][6][0]
-            // Assert //                    0  1  2  3  4  5  6
+                                        // Assert //                    0  1  2  3  4  5  6
             Assert.AreEqual(expected, actual);
         }
 

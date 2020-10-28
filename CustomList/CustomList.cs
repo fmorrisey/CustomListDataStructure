@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace CustomListProj
 {
@@ -19,11 +13,12 @@ namespace CustomListProj
 
         // Property
         public int Count { get { return _count; } }
-        public int Size { 
-            get { return _size; } 
-            set { _size = value; } 
+        public int Size
+        {
+            get { return _size; }
+            set { _size = value; }
         }
-        
+
         public T this[int i] // Indexer 
         {
             get
@@ -44,34 +39,28 @@ namespace CustomListProj
         // Constructor
         public CustomList()
         {
-            
+
             this._size = 4;
             _items = new T[_size];
 
             this._count = 0;
-            
+
         }
-        
+
         public void Add(T value)
         {
-            /// take in single item
-            /// Add an item the preExsisting array
-            /// check array size
-            // count equals capacity
-            // array is full
-            // if full call a copy expands array
-            //if not full add to existing array
-            //increment count and add to open slot
+
             if (_count == _size)
             {
                 _items = Expander(_items);
                 _items[_count++] = value;
 
-            } else if (_count < _size)
+            }
+            else if (_count < _size)
             {
                 _items[_count++] = value;
             }
-            
+
         }
 
         public void Remove(T item)
@@ -89,13 +78,12 @@ namespace CustomListProj
             }
 
         }
-        
+
         public void RemoveAt(int index)
         {
-
             try
             {
-                
+
                 for (int i = index; i < _count; i++)
                 {
                     if (i == _count - 1)
@@ -114,27 +102,51 @@ namespace CustomListProj
                 throw;
             }
             _count--;
-
-
         }
 
         private T[] Expander(T[] sourceData)
         {   // Expander Cycle Combustion Engine LoX/Methane
 
             // count old T and 2X the size create =>
-            
+
             T[] destinationData = new T[_size * 2]; //Creates new array
             destinationData = Copy(sourceData, _size, destinationData, _size * 2, _size); //copies old array to new
             _size = (_size * 2); // doubles capacity
-            
+
             return destinationData; //return
         }
-                
+
+        private T[] Copy(T[] sourceData, int sourceIndex, T[] destinationData, int destinationIndex, int length)
+        {
+            T[] transferData = new T[length];
+            try
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    transferData[i] = sourceData[i];
+                }
+                for (int i = 0; i < length; i++)
+                {
+                    destinationData[i] = transferData[i];
+                }
+
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+                throw;
+            }
+
+            return destinationData;
+            // takes in array and copies to other arrays
+
+        }
+
         private T[] Copy(T[] sourceData, T[] destinationData) //called in exapander add
         {
             // takes in array and copies to other arrays
             T[] transferData = new T[_size];
-            
+
             try
             {
                 for (int i = 0; i < (_size / 2); i++)
@@ -150,36 +162,32 @@ namespace CustomListProj
             {
 
                 throw;
-            }    
-            
+            }
+
             return destinationData;
         }
 
-        private T[] Copy(T[] sourceData, int sourceIndex, T[] destinationData , int destinationIndex, int length)
+
+
+
+        public void Sort(T[] sourceData, int length)
         {
-            T[] transferData = new T[length];
-            try
+            // What Sort of list are we talking about?
+            length = _size;
+
+            for (int i = 0; i <= length - 1; i++)
             {
-                for (int i = 0; i < length ; i++)
+                for (int j = i + 1; j < length; j++)
                 {
-                    transferData[i] = sourceData[i];
+                    /*if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
+                    {
+                        var temp = _items[i];
+                        _items[i] = _items[j];
+                        _items[j] = temp;
+                    }*/
                 }
-                for (int i = 0; i < length; i++)
-                {
-                    destinationData[i] = transferData[i];
-                }
-                
             }
-            catch (IndexOutOfRangeException)
-            {
-
-                throw;
-            }
-
-            return destinationData;
-            // takes in array and copies to other arrays
-
-            
         }
+
     }
 }

@@ -16,11 +16,14 @@ namespace CustomListProj
             
             for (int i = 0; i < strList.Size; i++)
             {
-                string str = "Hello";
+                string str = ($"Hello {i}");
                 strList.Add(str);
-
+               
             }
-            
+
+            strList.Remove("Hello 1");       // Search Remove at 2
+            string actual = strList[1];            // Query at i2
+
             CustomList<EngineType> engineList = new CustomList<EngineType>();
             
             for (int i = 0; i < 5; i++)
@@ -46,12 +49,16 @@ namespace CustomListProj
 
             removeList.Remove(5);
             removeList.RemoveAt(5);
-
-            Console.WriteLine("");
             
 
+            Console.WriteLine("");
 
+            /*
+            List<int> list1 = new List<int>(){ 1, 2, 3 };
+            List<int> list2 = new List<int>(){ 4, 5, 6 };
 
+            List<int> result = list1 + list2;
+            */
 
 
         }
