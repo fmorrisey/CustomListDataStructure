@@ -176,12 +176,12 @@ namespace CustomListProj
             {
                 for (int j = i + 1; j < length; j++)
                 {
-                    if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
+                    /*if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
                     {
                         var temp = _items[i];
                         _items[i] = _items[j];
                         _items[j] = temp;
-                    }
+                    }*/
                 }
             }
         }

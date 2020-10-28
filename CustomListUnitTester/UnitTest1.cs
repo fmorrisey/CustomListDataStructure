@@ -506,7 +506,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -520,7 +520,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -537,7 +537,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -552,7 +552,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -568,7 +568,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -583,7 +583,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -599,7 +599,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -614,7 +614,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -630,7 +630,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -645,7 +645,7 @@ namespace CustomListUnitTester
 
             // Act
             ///SOME CODE HERE
-            actual = 0;
+            actual = 1;
             // Assert
             Assert.AreEqual(expected, actual);
         }
