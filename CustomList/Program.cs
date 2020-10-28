@@ -14,6 +14,8 @@ namespace CustomListProj
             
             CustomList<string> strList = new CustomList<string>();
             string actualSTR = "";
+                        
+            // Act //
 
             for (int i = 0; i < 6; i++)
             {
@@ -21,12 +23,20 @@ namespace CustomListProj
                 strList.Add(str);
 
             }
+            for (int i = 0; i < 6; i++)
+            {
+               
+                string str = ($"Hello {i}");
+                strList.Add(str);
 
-            strList.Remove("Hello 1");      // Search Remove at _
-            strList.Add("Add 1");           // Search Remove at _
-            strList.Remove("Hello 2");      // Search Remove at _
-            strList.Add("Add 2");           // Search Remove at _
-            actualSTR = strList[1];         // Query at i2
+            }
+
+            strList.Remove("Hello 1");      // Search Remove at 1 replaced with Hello 2
+            strList.Add("Add 1");           // Adds at 5th index
+            strList.Remove("Hello 2");      // Search Remove at 1 replaced with Hello 3
+            strList.Add("Add 2");           // Adds at 5th index
+            actualSTR = strList[1];            // Query at index 1
+
 
             CustomList<EngineType> engineList = new CustomList<EngineType>();
             

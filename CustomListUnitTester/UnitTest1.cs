@@ -15,8 +15,7 @@ namespace CustomListUnitTester
     public class UnitTest1
     {
         ///////////////// ADD METHODS UNIT TEST /////////////////
-        [TestMethod]
-        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod] [AddMethodTests] /// PASSED!!! 
         public void Add_AddItemToEmptyList_ItemGoesToIndexZero()
         {
             // Arrange
@@ -33,8 +32,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod] [AddMethodTests] /// PASSED!!! ///
         public void Add_AddItemTwoIemsToList_CheckSecondItem()
         {
             // Arrange
@@ -53,8 +51,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [AddMethodTests] /// PASSED!!! /// INIT CHECKED dCC Inst MH
+        [TestMethod] [AddMethodTests] /// PASSED!!! ///
         public void Add_AddItemToEmptyList_CountIncrementsToOne()
         {
             // Arrange
@@ -71,8 +68,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [AddMethodTests] /// PASSED!!! /// INIT 
+        [TestMethod] [AddMethodTests] /// PASSED!!! ///
         public void Add_PositionOfItem_InPreExisitngArray()
         {
             // Purpose: What if I .Add to a list that has a 
@@ -93,8 +89,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual); // Must be 3
         }
 
-        [TestMethod]
-        [AddMethodTests] /// PASSED!!! /// INIT
+        [TestMethod] [AddMethodTests] /// PASSED!!! /// 
         public void Add_ValueOfCount_InPreExsitingArray()
         {
             // Purpose: What if I .Add to a list that has a 
@@ -170,8 +165,7 @@ namespace CustomListUnitTester
         }
 
         ///////////////// REMOVE UNIT TEST /////////////////
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_AtFirstIndex_FromList()
         {   // Remove before expander
             // Arrange //
@@ -193,8 +187,7 @@ namespace CustomListUnitTester
 
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAtSecond_FromList()
         {
             // Arrange // Remove before expander //
@@ -243,8 +236,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList()
         {
             // Remove before expander
@@ -266,8 +258,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveAfterExpanderMethod_FromList()
         {
             // Remove before expander
@@ -289,8 +280,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_RemoveLastItem_FromList_AfterExpanderCycle()
         {
             // Remove after expander
@@ -313,8 +303,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem()
         {
             // Remove before expander
@@ -337,8 +326,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemove_MatchingString()
         {
             // Remove before expander
@@ -358,15 +346,14 @@ namespace CustomListUnitTester
 
             }
 
-            strList.Remove("Hello 1");       // Search Remove at 2
-            actual = strList[1];            // Query at i2
+            strList.Remove("Hello 1");       // Search Remove at 1
+            actual = strList[1];            // Query at index 1
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_DoubleRemove()
         {
             // Remove before expander
@@ -392,8 +379,7 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem_AfterExpanderCycle()
         {
             // Remove after expander
@@ -416,15 +402,40 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod] [RemoveMethodTests] /// Passed!!! ///
+        public void Remove_RemoveATIndex_List()
+        {
+            // Remove after expander
+            // Arrange //
+            CustomList<int> removeList = new CustomList<int>();
+            int expected = 5;
+            int actual;
+            int item = 4;
+
+            // Act //
+            for (int i = 0; i < 14; i++)
+            {                           // creates a list with 14 values in
+                removeList.Add(i);      // an array with a _capacity of i16
+            }
+
+            removeList.RemoveAt(item);  // Remove at 4
+            actual = removeList[4];     // Query at 4
+                                        // [0][1][2][3][5][6][0]
+                                        // Assert //             
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///////////////// ADD AND REMOVE COMBO UNIT TEST /////////////////
+
         [TestMethod] [RemoveMethodTests] [AddMethodTests] /// PASSED!!! ///
         public void Remove_Add_MultipleInstances_StressTest()
         {
-            // Remove before expander
+            // Remove after expander
             // Arrange //
             CustomList<string> strList = new CustomList<string>();
 
 
-            string expected = "Hello 2"; //Hello 3
+            string expected = "Hello 3"; //Hello 3
             string actual;
 
             // Act //
@@ -436,25 +447,227 @@ namespace CustomListUnitTester
 
             }
 
-            strList.Remove("Hello 1");      // Search Remove at _
-            strList.Add("Add 1");           // Search Remove at _
-            strList.Remove("Hello 2");      // Search Remove at _
-            strList.Add("Add 2");           // Search Remove at _
-            actual = strList[1];            // Query at i2
+            strList.Remove("Hello 1");      // Search Remove at 1 replaced with Hello 2
+            strList.Add("Add 1");           // Adds at 5th index
+            strList.Remove("Hello 2");      // Search Remove at 1 replaced with Hello 3
+            strList.Add("Add 2");           // Adds at 5th index
+            actual = strList[1];            // Query at index 1
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        public class RemoveMethodTests : System.Attribute
+        [TestMethod] [RemoveMethodTests] [AddMethodTests] /// PASSED!!! ///
+        public void Remove_Add_DuplicateItem()
         {
+            // Remove After expander
+            // Arrange //
+            CustomList<string> strList = new CustomList<string>();
 
+
+            string expected = "Hello 3"; //Hello 3
+            string actual;
+
+            // Act //
+
+            for (int i = 0; i < 6; i++)
+            {
+                string str = ($"Hello {i}");
+                strList.Add(str);
+
+            }
+            for (int i = 0; i < 6; i++)
+            {
+
+                string str = ($"Hello {i}");
+                strList.Add(str);
+
+            }
+
+            strList.Remove("Hello 1");      // Search Remove at 1 replaced with Hello 2
+            strList.Add("Add 1");           // Adds at 5th index
+            strList.Remove("Hello 2");      // Search Remove at 1 replaced with Hello 3
+            strList.Add("Add 2");           // Adds at 5th index
+            actual = strList[1];            // Query at index 1
+
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
-        public class AddMethodTests : System.Attribute
-        {
 
+        ///////////////// ITERABLITY TEST /////////////////
+        [TestMethod][IterableTests] /// FAILED ///
+        public void Iteraotr_Test0()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod][IterableTests] /// FAILED ///
+        public void Iteraotr_Test1()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        ///////////////// PlusOperand TEST /////////////////
+        [TestMethod]
+        [PlusOperandTests] /// FAILED ///
+        public void PlusOperand_Test0()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [PlusOperandTests] /// FAILED ///
+        public void PlusOperand_Test1()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///////////////// MinusOperand TEST /////////////////
+        [TestMethod]
+        [MinusOperandTests] /// FAILED ///
+        public void MinusOperand_Test0()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [PlusOperandTests] /// FAILED ///
+        public void MinusOperand_Test1()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///////////////// Zipper TEST /////////////////
+        [TestMethod]
+        [ZipperTests] /// FAILED ///
+        public void Zipper_Test0()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ZipperTests] /// FAILED ///
+        public void Zipper_Test01()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///////////////// ToString TEST /////////////////
+        [TestMethod]
+        [ToStringTests] /// FAILED ///
+        public void ToString_Test01()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ToStringTests] /// FAILED ///
+        public void ToString_Test02()
+        {
+            // Arrange
+            int expected = 0;
+            int actual;
+
+            // Act
+            ///SOME CODE HERE
+            actual = 0;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///////////////// ATTRIBUTE TAGES /////////////////
+        public class RemoveMethodTests : System.Attribute { }
+
+        public class AddMethodTests : System.Attribute { }
+
+        public class SortMethodTests : System.Attribute { }
+
+        public class ToStringTests : System.Attribute { }
+        
+        public class PlusOperandTests : System.Attribute { }
+        
+        public class MinusOperandTests : System.Attribute { }
+        
+        public class IterableTests : System.Attribute { }
+        
+        public class ZipperTests : System.Attribute { }
+
+
 
     }
 }

@@ -9,7 +9,7 @@ namespace CustomListProj
         private T[] _items;
         private int _count; //_size
         private int _size;
-        private int _nextIndex = 0;
+        
 
         // Property
         public int Count { get { return _count; } }
@@ -142,7 +142,7 @@ namespace CustomListProj
 
         }
 
-        private T[] Copy(T[] sourceData, T[] destinationData) //called in exapander add
+        private T[] Copy(T[] sourceData, T[] destinationData) // No longer used
         {
             // takes in array and copies to other arrays
             T[] transferData = new T[_size];
@@ -167,9 +167,6 @@ namespace CustomListProj
             return destinationData;
         }
 
-
-
-
         public void Sort(T[] sourceData, int length)
         {
             // What Sort of list are we talking about?
@@ -179,12 +176,12 @@ namespace CustomListProj
             {
                 for (int j = i + 1; j < length; j++)
                 {
-                    /*if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
+                    if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
                     {
                         var temp = _items[i];
                         _items[i] = _items[j];
                         _items[j] = temp;
-                    }*/
+                    }
                 }
             }
         }
