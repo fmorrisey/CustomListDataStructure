@@ -13,16 +13,20 @@ namespace CustomListProj
         {
             
             CustomList<string> strList = new CustomList<string>();
-            
-            for (int i = 0; i < strList.Size; i++)
+            string actualSTR = "";
+
+            for (int i = 0; i < 6; i++)
             {
                 string str = ($"Hello {i}");
                 strList.Add(str);
-               
+
             }
 
-            strList.Remove("Hello 1");       // Search Remove at 2
-            string actual = strList[1];            // Query at i2
+            strList.Remove("Hello 1");      // Search Remove at _
+            strList.Add("Add 1");           // Search Remove at _
+            strList.Remove("Hello 2");      // Search Remove at _
+            strList.Add("Add 2");           // Search Remove at _
+            actualSTR = strList[1];         // Query at i2
 
             CustomList<EngineType> engineList = new CustomList<EngineType>();
             

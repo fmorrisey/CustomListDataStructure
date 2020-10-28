@@ -345,7 +345,7 @@ namespace CustomListUnitTester
             // Arrange //
             CustomList<string> strList = new CustomList<string>();
 
-            
+
             string expected = "Hello 2";
             string actual;
 
@@ -357,7 +357,7 @@ namespace CustomListUnitTester
                 strList.Add(str);
 
             }
-            
+
             strList.Remove("Hello 1");       // Search Remove at 2
             actual = strList[1];            // Query at i2
 
@@ -413,6 +413,36 @@ namespace CustomListUnitTester
             actual = removeList[4];     // Query at 4
                                         // [0][1][2][3][5][6][0]
                                         // Assert //                    0  1  2  3  4  5  6
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod] [RemoveMethodTests] [AddMethodTests] /// PASSED!!! ///
+        public void Remove_Add_MultipleInstances_StressTest()
+        {
+            // Remove before expander
+            // Arrange //
+            CustomList<string> strList = new CustomList<string>();
+
+
+            string expected = "Hello 2"; //Hello 3
+            string actual;
+
+            // Act //
+
+            for (int i = 0; i < 6; i++)
+            {
+                string str = ($"Hello {i}");
+                strList.Add(str);
+
+            }
+
+            strList.Remove("Hello 1");      // Search Remove at _
+            strList.Add("Add 1");           // Search Remove at _
+            strList.Remove("Hello 2");      // Search Remove at _
+            strList.Add("Add 2");           // Search Remove at _
+            actual = strList[1];            // Query at i2
+
+            // Assert
             Assert.AreEqual(expected, actual);
         }
 
