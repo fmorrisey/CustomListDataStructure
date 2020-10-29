@@ -23,19 +23,28 @@ namespace CustomListProj
                 Console.WriteLine(item);
             }
             Console.ReadLine();
-            Array.Sort()
+            
             CustomList<string> ACE = new CustomList<string>() { "A", "C", "E" };
             CustomList<string> BDF = new CustomList<string>() { "B", "D" , "F" };
             CustomList<string> resultstring = new CustomList<string>();
-            resultstring = resultstring.CopyLists(ACE, BDF); // result = 1,3,5,2,4,6
+            resultstring = resultstring.Merge(ACE, BDF); // result = 1,3,5,2,4,6
 
             foreach (var item in resultstring)
             {
                 Console.WriteLine(item);
             }
             Console.ReadLine();
+                       
 
-            
+            CustomList<int> minusResult = new CustomList<int>();
+            minusResult = one + two; // result = 1,3,5,2,4,6
+
+            foreach (var item in minusResult)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+
             CustomList<int> sortListInt = new CustomList<int>();
             CustomList<int> sortListIntNEW = new CustomList<int>();
             CustomList<string> sortListStr = new CustomList<string>();

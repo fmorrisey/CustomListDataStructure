@@ -4,9 +4,16 @@ using System.Collections.Generic;
 
 namespace CustomListProj
 {   /// <summary>
-/// 
-/// </summary>
-/// <typeparam name="T"></typeparam>
+    /// <para>Summary:
+    ///     Creates a wrapper around an array that represents a strongly typed list of objects that can be accessed by index.<para />
+    ///     Provides methods to add, remove, remove at, sort, merge, and manipulate lists.</para>
+    ///
+    /// <br>Type parameters:
+    ///   T:
+    ///     The type of elements in the list.</br>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+
     public class CustomList<T> : IEnumerable  where T : IComparable
     {                            // Non_Generic    // Adds a constraint to
         // _Private Member Variables
@@ -23,7 +30,6 @@ namespace CustomListProj
             {
                 yield return _items[i];
             }
-
         }
 
         // Property
@@ -50,7 +56,6 @@ namespace CustomListProj
             set { _items[i] = value; }
         }
 
-
         // Constructor
         public CustomList()
         {
@@ -61,7 +66,7 @@ namespace CustomListProj
             this._count = 0;
 
         }
-
+        // Additional overload to setSize
         public CustomList(int setSize)
         {
             this._size = setSize;
@@ -70,7 +75,7 @@ namespace CustomListProj
             
         }
         /// <summary>
-        /// <para>Provides a method for adding the input item to the end of the list based.</para>
+        /// <para>Provides a method for adding an item to the end of the list.</para>
         /// </summary>
         public void Add(T value)
         {
@@ -89,8 +94,7 @@ namespace CustomListProj
         }
         /// <summary>
         /// <para>Provides a method for removing a matching value from the list based on the arguments.</para>
-        /// <para>Note:</para>
-        /// <para>The first matching value is removed from the list, and will handle duplicates</para>
+        /// <para>Note: The first matching value is removed from the list, and will NOT handle duplicates</para>
         /// </summary>    
         public void Remove(T item)
         {
@@ -109,9 +113,8 @@ namespace CustomListProj
         }
 
         /// <summary>
-        /// <para>Provides a method for removing a set item at the index specified in the parameter.</para>
-        /// <para>Note:</para>
-        /// <para>The first matching value is removed from the list, and will handle duplicates</para>
+        /// <para>Provides a method for removing an item at a set index specified in the parameter.</para>
+        /// 
         /// </summary>
         public void RemoveAt(int index)
         {
@@ -213,7 +216,7 @@ namespace CustomListProj
         /// <summary>
         /// <para>Provides a method to convert any data type to a return string.</para>
         /// </summary>
-        public override string ToString() // Coverts Data Types to String Values
+        public override string ToString() 
         {
             string buildString = "";
             foreach (var item in _items)
@@ -252,7 +255,7 @@ namespace CustomListProj
         /// Merges two lists into a new list that is returned and
         /// the new list size is total the count of both incoming lists.
         /// </summary>
-        public CustomList<T> CopyLists(CustomList<T> firstList, CustomList<T> secondList)
+        public CustomList<T> Merge(CustomList<T> firstList, CustomList<T> secondList)
         {   
             int newSize = (firstList.Count + secondList.Count);
 
@@ -276,23 +279,6 @@ namespace CustomListProj
         /// The new list total count of both incoming lists.
         /// </summary>
 
-        public static CustomList<T> operator -(CustomList<T> one, CustomList<T> two)
-        {
-            int newSize = (one.Count + two.Count);
-
-            CustomList<T> result = new CustomList<T>(newSize);
-
-            for (int i = 0; i < one._count; i++)
-            {
-                result.Add(one[i]);
-            }
-            for (int j = 0; j < two._count; j++)
-            {
-                result.Add(two[j]);
-            }
-
-            return result;
-        }
-
+       
     }
 }
