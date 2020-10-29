@@ -12,7 +12,7 @@ namespace CustomListProj
     {
         static void Main(string[] args)
         {
-
+            
             CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
             CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
             CustomList<int> result = one + two; // result = 1,3,5,2,4,6
@@ -26,6 +26,7 @@ namespace CustomListProj
 
             /*
             CustomList<int> sortListInt = new CustomList<int>();
+            CustomList<int> sortListIntNEW = new CustomList<int>();
             CustomList<string> sortListStr = new CustomList<string>();
             RandomNumGen rand = new RandomNumGen();
             int randInt = 0;
@@ -33,7 +34,7 @@ namespace CustomListProj
 
             for (int i = 0; i < 18; i++)
             {
-                randInt = rand.GenerateRandomInt(1, 32);
+                randInt = rand.GenerateRandomInt(0, 32);
                 sortListInt.Add(randInt);
             }
 
@@ -70,9 +71,6 @@ namespace CustomListProj
             }
 
             actual = intListToString.ToString();
-           
-
-
             
             CustomList<string> strList = new CustomList<string>();
             string actualSTR = "";
@@ -90,7 +88,6 @@ namespace CustomListProj
                
                 string str = ($"Hello {i}");
                 strList.Add(str);
-
             }
 
             strList.Remove("Hello 1");      // Search Remove at 1 replaced with Hello 2
@@ -134,15 +131,7 @@ namespace CustomListProj
             
 
             Console.WriteLine("");
-
-
-
-
             
-            List<int> list1 = new List<int>(){ 1, 2, 3 };
-            List<int> list2 = new List<int>(){ 4, 5, 6 };
-
-            List<int> result = list1 + list2;
             */
 
 

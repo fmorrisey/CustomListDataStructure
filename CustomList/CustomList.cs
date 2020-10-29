@@ -155,15 +155,17 @@ namespace CustomListProj
         }
                 
         public void Sort()
-        {
+        {   // Once Called it passes the appropriate arguments into the BubbleSort
+            // Later versions will choose sort algorithms based on size
+
             _items = BubbleSort(_items, _size);
         }
 
         private T[] BubbleSort(T[] sourceData, int length)
         {
-            // What Sort of list are we talking about?
-            length = _size;
-
+            // 
+            length = _count;
+            
             Comparer<T> comparer = Comparer<T>.Default;
             for (int i = (length - 1); i >= 0; i--)
             {
