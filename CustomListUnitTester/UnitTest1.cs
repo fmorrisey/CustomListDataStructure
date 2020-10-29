@@ -426,6 +426,30 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        [RemoveMethodTests] /// PASSED!!! ///
+        public void Remove_SearchAndRemoveItem_NOT_FOUND()
+        {
+            // Remove before expander
+            // Arrange //
+            CustomList<int> removeList = new CustomList<int>();
+            int expected = 0;
+            int actual;
+            int item = 2;
+
+            // Act //
+            for (int i = 0; i < 3; i++)
+            {                           // creates a list with 3 values in
+                removeList.Add(i);      // an array with a _capacity of i4
+            }                           // [0][1][2][0]
+
+            removeList.Remove(5);       // Search Remove at 2
+            actual = removeList[2];     // Query at i2
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         ///////////////// ADD AND REMOVE COMBO UNIT TEST /////////////////
 
         [TestMethod] [RemoveMethodTests] [AddMethodTests] /// PASSED!!! ///
