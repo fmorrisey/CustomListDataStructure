@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,54 @@ namespace CustomListProj
     {
         static void Main(string[] args)
         {
+            CustomList<int> sortListInt = new CustomList<int>();
+            CustomList<string> sortListStr = new CustomList<string>();
+            RandomNumGen rand = new RandomNumGen();
+            int randInt = 0;
+            string randStr = "";
+
+            for (int i = 0; i < 18; i++)
+            {
+                randInt = rand.GenerateRandomInt(1, 32);
+                sortListInt.Add(randInt);
+            }
+
+            sortListInt.Sort();
+            foreach (var val in sortListInt)
+            {
+                Console.WriteLine($"Print: {val}");
+            }
+            Console.ReadLine();
+
+            for (int i = 0; i < 32; i++)
+            {
+                randStr = rand.GenerateRandomString();
+                sortListStr.Add(randStr);
+            }
+
+            sortListStr.Sort();
+            foreach (var val in sortListStr)
+            {
+                Console.WriteLine($"Print: {val}");
+            }
+            Console.ReadLine();
+
+            /*
+            string expected = "01234567";
+            string actual;
+            CustomList<int> intListToString = new CustomList<int>();
+
+            // Act
+            for (int i = 0; i < 8; i++)
+            {
+                intListToString.Add(i);
+
+            }
+
+            actual = intListToString.ToString();
+           
+
+
             
             CustomList<string> strList = new CustomList<string>();
             string actualSTR = "";
@@ -37,6 +86,12 @@ namespace CustomListProj
             strList.Add("Add 2");           // Adds at 5th index
             actualSTR = strList[1];            // Query at index 1
 
+
+            foreach (var str in strList)
+            {
+                Console.WriteLine($"Print: {str}");
+            }
+            Console.Read();
 
             CustomList<EngineType> engineList = new CustomList<EngineType>();
             
@@ -67,7 +122,10 @@ namespace CustomListProj
 
             Console.WriteLine("");
 
-            /*
+
+
+
+            
             List<int> list1 = new List<int>(){ 1, 2, 3 };
             List<int> list2 = new List<int>(){ 4, 5, 6 };
 

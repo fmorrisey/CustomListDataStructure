@@ -1,15 +1,27 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CustomListProj
 {
-    public class CustomList<T>
-    {
+    public class CustomList<T> : IEnumerable  where T : IComparable
+    {                            // Non_Generic    // Adds a constraint to
         // _Private Member Variables
         // the _prefix is for private 
         private T[] _items;
         private int _count; //_size
         private int _size;
-        
+
+        // Sets IEnumerable to the _items generics array 
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < _size; i++) // Don't exceed count
+            {
+                yield return _items[i];
+            }
+
+        }
 
         // Property
         public int Count { get { return _count; } }
@@ -167,24 +179,44 @@ namespace CustomListProj
             return destinationData;
         }
 
-        public void Sort(T[] sourceData, int length)
+        public void Sort()
+        {
+            _items = BubbleSort(_items, _size);
+        }
+
+        private T[] BubbleSort(T[] sourceData, int length)
         {
             // What Sort of list are we talking about?
             length = _size;
 
-            for (int i = 0; i <= length - 1; i++)
+            Comparer<T> comparer = Comparer<T>.Default;
+            for (int i = (length - 1); i >= 0; i--)
             {
-                for (int j = i + 1; j < length; j++)
+                for (int j = 1; j <= i; j++)
                 {
-                    /*if (sourceData[i] > sourceData[j]) //Int Dependant not compatable with T
+                    if (comparer.Compare(sourceData[j - 1], sourceData[j]) > 0)
                     {
-                        var temp = _items[i];
-                        _items[i] = _items[j];
-                        _items[j] = temp;
-                    }*/
+                        var temp = sourceData[j - 1];
+                        sourceData[j - 1] = sourceData[j];
+                        sourceData[j] = temp;
+                    }
                 }
             }
+            return sourceData;
         }
+
+
+        public override string ToString()
+        {
+            string buildString = "";
+            foreach (var item in _items)
+            {
+                buildString += item.ToString(); 
+            }
+
+            return buildString;
+        }
+
 
     }
 }

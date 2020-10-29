@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RandomNumGen.cs" />
     <Compile Include="EngineType.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="RocketEngines.cs" />
     <Compile Include="CustomList.cs" />
     <Compile Include="Program.cs" />

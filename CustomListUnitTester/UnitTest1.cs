@@ -621,8 +621,29 @@ namespace CustomListUnitTester
 
         ///////////////// ToString TEST /////////////////
         [TestMethod]
-        [ToStringTests] /// FAILED ///
+        [ToStringTests] /// PASSED ///
         public void ToString_Test01()
+        {
+            // Arrange
+            string expected = "01234567";
+            string actual;
+            CustomList<int> strList = new CustomList<int>();
+
+            // Act
+            for (int i = 0; i < 8; i++)
+            {
+                strList.Add(i);
+
+            }
+
+            actual = strList.ToString();
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ToStringTests] /// FAILED ///
+        public void ToString_Test02()
         {
             // Arrange
             int expected = 0;
@@ -635,9 +656,38 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
+        ///////////////// SORT TEST /////////////////
         [TestMethod]
-        [ToStringTests] /// FAILED ///
-        public void ToString_Test02()
+        [SortMethodTests] /// Failed ///
+        public void Sort_Intergers_Test()
+        {
+            // Arrange // Controlled sort test with expected results
+            int expected = 0;
+            int actual;
+
+            CustomList<int> sortListInt = new CustomList<int>();
+            
+            // Act
+            sortListInt.Add(1);
+            sortListInt.Add(7);
+            sortListInt.Add(2);
+            sortListInt.Add(5);
+            sortListInt.Add(3);
+            sortListInt.Add(8);
+            sortListInt.Add(5);
+            sortListInt.Add(7);
+            sortListInt.Add(6);
+            
+
+            sortListInt.Sort();
+            actual = sortListInt[2];
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [SortMethodTests] /// FAILED ///
+        public void Sort_Strings_Test()
         {
             // Arrange
             int expected = 0;
