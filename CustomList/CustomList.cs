@@ -14,7 +14,7 @@ namespace CustomListProj
     /// </summary>
     /// <typeparam name="T"></typeparam>
 
-    public class CustomList<T> : IEnumerable  where T : IComparable
+    public class CustomList<T> : IEnumerable where T : IComparable
     {                            // Non_Generic    // Adds a constraint to
         // _Private Member Variables
         // the _prefix is for private 
@@ -72,7 +72,7 @@ namespace CustomListProj
             this._size = setSize;
             _items = new T[_size];
             this._count = 0;
-            
+
         }
         /// <summary>
         /// <para>Provides a method for adding an item to the end of the list.</para>
@@ -152,7 +152,7 @@ namespace CustomListProj
 
             return destinationData; //return
         }
-       
+
         private T[] Copy(T[] sourceData, int sourceIndex, T[] destinationData, int destinationIndex, int length)
         {
             T[] transferData = new T[length];
@@ -186,7 +186,7 @@ namespace CustomListProj
         /// using the first letter or character of the item.
         /// Ascending and descending numerals to letters (ignores case)</para>
         /// </summary>                
-        public void Sort() 
+        public void Sort()
         {   // Once Called it passes the appropriate arguments into the BubbleSort
             // Later versions will choose sort algorithms based on size
             _items = BubbleSort(_items, _size);
@@ -196,7 +196,7 @@ namespace CustomListProj
         {
             // Bubble Sort Algorithm that sorts numbers than letters
             length = _count;
-            
+
             Comparer<T> comparer = Comparer<T>.Default;
             for (int i = (length - 1); i >= 0; i--)
             {
@@ -216,12 +216,12 @@ namespace CustomListProj
         /// <summary>
         /// <para>Provides a method to convert any data type to a return string.</para>
         /// </summary>
-        public override string ToString() 
+        public override string ToString()
         {
             string buildString = "";
             foreach (var item in _items)
             {
-                buildString += item.ToString(); 
+                buildString += item.ToString();
             }
 
             return buildString;
@@ -235,20 +235,28 @@ namespace CustomListProj
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
-            int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
-            
-            CustomList<T> transferList = new CustomList<T>(newSize); // creates transfer list
-
-            for (int i = 0; i < firstList._count; i++)
+            try
             {
-                transferList.Add(firstList[i]);
+                int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
+                CustomList<T> transferList = new CustomList<T>(newSize);
+                if (firstList.Count == 0) { return transferList; }  // Checks for empty lists
+                else if (secondList.Count == 0) { return transferList; }
+                else
+                {
+                    for (int i = 0; i < firstList._count; i++)
+                    {   // adds data from first list
+                        transferList.Add(firstList[i]);
+                    }
+                    for (int j = 0; j < secondList._count; j++)
+                    {   // adds data from the second list
+                        transferList.Add(secondList[j]);
+                    }
+                    // returns the new lists
+                    return transferList;
+                }
             }
-            for (int j = 0; j < secondList._count; j++)
-            {
-                transferList.Add(secondList[j]);
-            }
-
-            return transferList;
+            catch (IndexOutOfRangeException)
+            { throw new Exception("Index Out Of Range"); }
         }
 
         /// <summary>
@@ -256,60 +264,118 @@ namespace CustomListProj
         /// the new list size is total the count of both incoming lists.
         /// </summary>
         public CustomList<T> Merge(CustomList<T> firstList, CustomList<T> secondList)
-        {   
-            int newSize = (firstList.Count + secondList.Count);
-
-            CustomList<T> result = new CustomList<T>(newSize);
-
-            for (int i = 0; i < firstList._count; i++)
+        {   // External Use
+            try
             {
-                result.Add(firstList[i]);
+                int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
+                CustomList<T> transferList = new CustomList<T>(newSize);
+                if (firstList.Count == 0) { return transferList; }  // Checks for empty lists
+                else if (secondList.Count == 0) { return transferList; }
+                else
+                {
+                    for (int i = 0; i < firstList._count; i++)
+                    {   // adds data from first list
+                        transferList.Add(firstList[i]);
+                    }
+                    for (int j = 0; j < secondList._count; j++)
+                    {   // adds data from the second list
+                        transferList.Add(secondList[j]);
+                    }
+                    // returns the new lists
+                    return transferList;
+                }
             }
-            for (int j = 0; j < secondList._count; j++)
-            {
-                result.Add(secondList[j]);
-            }
-
-            return result;
+            catch (IndexOutOfRangeException)
+            { throw new Exception("Index Out Of Range"); }
         }
+
+        private static CustomList<T> MergeList(CustomList<T> firstList, CustomList<T> secondList)
+        {   // Internal Use Only // mimics Public Merge
+            try
+            {
+                int newSize = (firstList.Count + secondList.Count);
+                CustomList<T> result = new CustomList<T>(newSize);
+                if (firstList.Count == 0) { return result; }
+                else if (secondList.Count == 0) { return result; }
+                else
+                {
+                    for (int i = 0; i < firstList._count; i++)
+                    {
+                        result.Add(firstList[i]);
+                    }
+                    for (int j = 0; j < secondList._count; j++)
+                    {
+                        result.Add(secondList[j]);
+                    }
+
+                    return result;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            { throw new Exception("Index Out Of Range"); }
+        }
+
+        /// PUT THE REMOVEDUPLICATE METHOD HERE!!!!! /////
 
         /// <summary>
         /// Removes duplicates by from two lists using a Minus ( - ) Operator
         /// 
         /// The new list is equal the count of items in the list
         /// </summary>
-
-        /// PUT THE REMOVEDUPLICATE METHOD HERE!!!!! /////
-
-
-
-
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
             int newSize = (firstList.Count + secondList.Count);
-            int countOne = 0;
-            int countTwo = 0;
+            int countOne = firstList.Count;
+            int countTwo = secondList.Count;
 
             CustomList<T> transferList = new CustomList<T>(newSize);
 
+            transferList = MergeList(firstList, secondList);
+                       
+            
 
-            for (int i = 0; i < firstList._count; i++)
-            {
-                transferList.Remove(firstList[i]);
-                countOne--;
-            }
-            for (int j = 0; j < secondList._count; j++)
-            {
-                transferList.Remove(secondList[j]);
-                countTwo--;
-            }
+            //newSize = (countOne + countTwo);
 
-            newSize = (countOne + countTwo);
+           // CustomList<T> transferList = new CustomList<T>(newSize);
 
-            CustomList<T> resultReturn = new CustomList<T>(newSize);
-
-            return resultReturn;
+            return transferList;
         }
+
+        static int removeDuplicates(int []arr, int n) 
+    { 
+          
+        // Return, if array is empty 
+        // or contains a single element 
+        if (n == 0 || n == 1) 
+            return n; 
+      
+        int []temp = new int[n]; 
+          
+        // Start traversing elements 
+        int j = 0; 
+          
+        for (int i = 0; i < n - 1; i++) 
+          
+            // If current element is not equal 
+            // to next element then store that 
+            // current element 
+            if (arr[i] != arr[i+1]) 
+                temp[j++] = arr[i]; 
+          
+        // Store the last element as 
+        // whether it is unique or  
+        // repeated, it hasn't 
+        // stored previously 
+        temp[j++] = arr[n-1];  
+          
+        // Modify original array 
+        for (int i = 0; i < j; i++) 
+            arr[i] = temp[i]; 
+      
+        return j; 
+    } 
+
+
 
     }
 }
