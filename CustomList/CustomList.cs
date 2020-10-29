@@ -289,6 +289,8 @@ namespace CustomListProj
             { throw new Exception("Index Out Of Range"); }
         }
 
+
+
         private static CustomList<T> MergeList(CustomList<T> firstList, CustomList<T> secondList)
         {   // Internal Use Only // mimics Public Merge
             try
@@ -315,6 +317,38 @@ namespace CustomListProj
             { throw new Exception("Index Out Of Range"); }
         }
 
+
+        /// <summary>
+        /// Merges and Sort two lists into a new list that is returned and
+        /// the new list size is total the count of both incoming lists.
+        /// </summary>
+        public CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
+        {   // External Use
+            try
+            {
+                int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
+                CustomList<T> transferList = new CustomList<T>(newSize);
+                if (firstList.Count == 0) { return transferList; }  // Checks for empty lists
+                else if (secondList.Count == 0) { return transferList; }
+                else
+                {
+                    for (int i = 0; i < firstList._count; i++)
+                    {   // adds data from first list
+                        transferList.Add(firstList[i]);
+                    }
+                    for (int j = 0; j < secondList._count; j++)
+                    {   // adds data from the second list
+                        transferList.Add(secondList[j]);
+                    }
+                }
+                //Sorts the list then returns
+                transferList.Sort();
+                return transferList;
+            }
+            catch (IndexOutOfRangeException)
+            { throw new Exception("Index Out Of Range"); }
+        }
+
         /// PUT THE REMOVEDUPLICATE METHOD HERE!!!!! /////
 
         /// <summary>
@@ -324,21 +358,29 @@ namespace CustomListProj
         /// </summary>
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
-            int newSize = (firstList.Count + secondList.Count);
-            int countOne = firstList.Count;
-            int countTwo = secondList.Count;
+            try
+            {
+                int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
+                CustomList<T> transferList = new CustomList<T>(newSize);
+                if (firstList.Count == 0) { return transferList; }  // Checks for empty lists
+                else if (secondList.Count == 0) { return transferList; }
+                else
+                {
+                    for (int i = 0; i < firstList._count; i++)
+                    {   // adds data from first list
+                        transferList.Add(firstList[i]);
+                    }
+                    for (int j = 0; j < secondList._count; j++)
+                    {   // adds data from the second list
+                        transferList.Add(secondList[j]);
+                    }
+                }
 
-            CustomList<T> transferList = new CustomList<T>(newSize);
-
-            transferList = MergeList(firstList, secondList);
-                       
-            
-
-            //newSize = (countOne + countTwo);
-
-           // CustomList<T> transferList = new CustomList<T>(newSize);
-
-            return transferList;
+                transferList.Sort();
+                return transferList;
+            }
+            catch (IndexOutOfRangeException)
+            { throw new Exception("Index Out Of Range"); }
         }
 
         static int removeDuplicates(int []arr, int n) 

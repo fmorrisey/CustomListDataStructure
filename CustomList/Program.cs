@@ -12,7 +12,17 @@ namespace CustomListProj
     {   
         static void Main(string[] args)
         {
-            
+            CustomList<int> odd = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> even = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> contain = new CustomList<int>();
+            contain = contain.Zip(odd, even);
+
+            foreach (var item in contain)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+
             CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
             CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
             CustomList<int> result = new CustomList<int>();
