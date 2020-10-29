@@ -12,6 +12,19 @@ namespace CustomListProj
     {
         static void Main(string[] args)
         {
+
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> result = one + two; // result = 1,3,5,2,4,6
+            
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
+            /*
             CustomList<int> sortListInt = new CustomList<int>();
             CustomList<string> sortListStr = new CustomList<string>();
             RandomNumGen rand = new RandomNumGen();

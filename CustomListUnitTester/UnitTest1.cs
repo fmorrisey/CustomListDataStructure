@@ -539,12 +539,16 @@ namespace CustomListUnitTester
         public void PlusOperand_Test0()
         {
             // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "135246";
+            string actual;
 
             // Act
-            ///SOME CODE HERE
-            actual = 1;
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> result = one + two; // result = 1,3,5,2,4,6
+
+            actual = result.ToString();
+            
             // Assert
             Assert.AreEqual(expected, actual);
         }
