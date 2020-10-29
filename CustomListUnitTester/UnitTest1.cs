@@ -1,5 +1,6 @@
 ﻿using CustomListProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace CustomListUnitTester
 {
@@ -497,21 +498,27 @@ namespace CustomListUnitTester
 
 
         ///////////////// ITERABLITY TEST /////////////////
-        [TestMethod][IterableTests] /// FAILED ///
-        public void Iteraotr_Test0()
+        [TestMethod][IterableTests] /// PASSED ///
+        public void Iteraotr_ForEachInteger()
         {
             // Arrange
-            int expected = 0;
+            int expected = 4;
             int actual;
+            int counter = 0;
+            CustomList<int> interIntList = new CustomList<int>();
 
             // Act
-            ///SOME CODE HERE
-            actual = 1;
+            foreach (var item in interIntList )
+            {
+                counter++;
+                interIntList.Add(counter);
+            }
+            actual = interIntList[3];
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod][IterableTests] /// FAILED ///
+        [TestMethod][IterableTests] /// FAILED /// INCOMPLETE
         public void Iteraotr_Test1()
         {
             // Arrange
@@ -622,7 +629,7 @@ namespace CustomListUnitTester
         ///////////////// ToString TEST /////////////////
         [TestMethod]
         [ToStringTests] /// PASSED ///
-        public void ToString_Test01()
+        public void ToString_IntTOString()
         {
             // Arrange
             string expected = "01234567";
@@ -642,42 +649,44 @@ namespace CustomListUnitTester
         }
 
         [TestMethod]
-        [ToStringTests] /// FAILED ///
-        public void ToString_Test02()
+        [ToStringTests] /// PASSED ///
+        public void ToString_DoubleToString()
         {
-            // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "0120";
+            string actual;
+            double counter = 3.33d;
+            CustomList<double> doubleList = new CustomList<double>();
 
             // Act
-            ///SOME CODE HERE
-            actual = 1;
+            for (int i = 0; i < 3; i++)
+            {
+                counter++;
+                //counter = Math.Round(counter, 4);
+                doubleList.Add(i);
+
+            }
+
+            actual = doubleList.ToString();
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
         ///////////////// SORT TEST /////////////////
         [TestMethod]
-        [SortMethodTests] /// Failed ///
+        [SortMethodTests] /// Passed ///
         public void Sort_Intergers_Test()
         {
             // Arrange // Controlled sort test with expected results
-            int expected = 0;
+            int expected = 5;
             int actual;
 
             CustomList<int> sortListInt = new CustomList<int>();
             
             // Act
-            sortListInt.Add(1);
-            sortListInt.Add(7);
-            sortListInt.Add(2);
-            sortListInt.Add(5);
-            sortListInt.Add(3);
-            sortListInt.Add(8);
-            sortListInt.Add(5);
-            sortListInt.Add(7);
-            sortListInt.Add(6);
-            
+            sortListInt.Add(1); //0
+            sortListInt.Add(7); //1
+            sortListInt.Add(2); //2
+            sortListInt.Add(5); //3
 
             sortListInt.Sort();
             actual = sortListInt[2];
@@ -686,16 +695,45 @@ namespace CustomListUnitTester
         }
 
         [TestMethod]
-        [SortMethodTests] /// FAILED ///
+        [SortMethodTests] /// PASSED ///
         public void Sort_Strings_Test()
         {
-            // Arrange
-            int expected = 0;
-            int actual;
+            // Arrange // Controlled sort test with expected results
+            string expected = "ü"; //Der Deutsch Umlaute hast drietter gekommen 
+            string actual;         //The German Umlaute comes third in this sort
+
+            CustomList<string> sortListStrings = new CustomList<String>();
 
             // Act
-            ///SOME CODE HERE
-            actual = 1;
+            sortListStrings.Add("A"); //0
+            sortListStrings.Add("z"); //1
+            sortListStrings.Add("ü"); //2
+            sortListStrings.Add("§"); //3
+
+            sortListStrings.Sort();
+            actual = sortListStrings[2];
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [SortMethodTests] /// FAIILED /// INCOMPLETE
+        public void Sort_StringsMultiLingual_Test()
+        {
+            // Arrange // Controlled sort test with expected results
+            string expected = "ü"; //Der Deutsch Umlaute hast drietter gekommen 
+            string actual;         //The German Umlaute comes third in this sort
+
+            CustomList<string> sortListStrings = new CustomList<String>();
+
+            // Act
+            sortListStrings.Add("A"); //0
+            sortListStrings.Add("z"); //1
+            sortListStrings.Add("ü"); //2
+            sortListStrings.Add("§"); //3
+
+            sortListStrings.Sort();
+            actual = sortListStrings[2];
             // Assert
             Assert.AreEqual(expected, actual);
         }
