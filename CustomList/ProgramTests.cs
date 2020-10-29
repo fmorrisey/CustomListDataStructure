@@ -4,8 +4,12 @@ namespace CustomListProj
 {
     class ProgramTests
     {
-
-        private void tests(string[] args)
+        /// <summary>
+        /// Holds program tests used to watch the CustomList used inside of the program to
+        /// debug and understand features beyond the capabilities offered in the Unit Testing environment.
+        /// </summary>
+       
+        private void tests()
         {
 
             CustomList<int> one = new CustomList<int>() { 1, 3, 5 };

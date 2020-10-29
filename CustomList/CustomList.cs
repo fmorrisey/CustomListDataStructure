@@ -233,22 +233,22 @@ namespace CustomListProj
         /// The new list total count of both incoming lists.
         /// </summary>
 
-        public static CustomList<T> operator +(CustomList<T> one, CustomList<T> two)
+        public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
-            int newSize = (one.Count + two.Count);
+            int newSize = (firstList.Count + secondList.Count); // determines the size for the transferList
             
-            CustomList<T> result = new CustomList<T>(newSize);
+            CustomList<T> transferList = new CustomList<T>(newSize); // creates transfer list
 
-            for (int i = 0; i < one._count; i++)
+            for (int i = 0; i < firstList._count; i++)
             {
-                result.Add(one[i]);
+                transferList.Add(firstList[i]);
             }
-            for (int j = 0; j < two._count; j++)
+            for (int j = 0; j < secondList._count; j++)
             {
-                result.Add(two[j]);
+                transferList.Add(secondList[j]);
             }
 
-            return result;
+            return transferList;
         }
 
         /// <summary>
@@ -279,22 +279,36 @@ namespace CustomListProj
         /// The new list is equal the count of items in the list
         /// </summary>
 
-        public static CustomList<T> operator -(CustomList<T> one, CustomList<T> two)
+        /// PUT THE REMOVEDUPLICATE METHOD HERE!!!!! /////
+
+
+
+
+        public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
-            int newSize = (one.Count + two.Count);
+            int newSize = (firstList.Count + secondList.Count);
+            int countOne = 0;
+            int countTwo = 0;
 
-            CustomList<T> result = new CustomList<T>(newSize);
+            CustomList<T> transferList = new CustomList<T>(newSize);
 
-            for (int i = 0; i < one._count; i++)
+
+            for (int i = 0; i < firstList._count; i++)
             {
-                result.Add(one[i]);
+                transferList.Remove(firstList[i]);
+                countOne--;
             }
-            for (int j = 0; j < two._count; j++)
+            for (int j = 0; j < secondList._count; j++)
             {
-                result.Add(two[j]);
+                transferList.Remove(secondList[j]);
+                countTwo--;
             }
 
-            return result;
+            newSize = (countOne + countTwo);
+
+            CustomList<T> resultReturn = new CustomList<T>(newSize);
+
+            return resultReturn;
         }
 
     }

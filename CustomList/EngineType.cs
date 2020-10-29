@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CustomListProj
 {
     class EngineType : RocketEngines, IComparable
-    {
+    {   //created for object testing
         public EngineType(string name)
         {
             this.Name = name;

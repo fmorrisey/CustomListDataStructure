@@ -1,7 +1,7 @@
 ﻿namespace CustomListProj
 {
     public abstract class RocketEngines
-    {
+    {   //Created for object testing
         protected double _thrust;
         protected double _mass;
         protected string _cycle;
