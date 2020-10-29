@@ -9,22 +9,33 @@ using System.Threading.Tasks;
 namespace CustomListProj
 {
     class Program
-    {
+    {   
         static void Main(string[] args)
         {
             
             CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
             CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
-            CustomList<int> result = one + two; // result = 1,3,5,2,4,6
-            
+            CustomList<int> result = new CustomList<int>();
+            result = one + two; // result = 1,3,5,2,4,6
+
             foreach (var item in result)
             {
                 Console.WriteLine(item);
             }
+            Console.ReadLine();
+            Array.Sort()
+            CustomList<string> ACE = new CustomList<string>() { "A", "C", "E" };
+            CustomList<string> BDF = new CustomList<string>() { "B", "D" , "F" };
+            CustomList<string> resultstring = new CustomList<string>();
+            resultstring = resultstring.CopyLists(ACE, BDF); // result = 1,3,5,2,4,6
 
+            foreach (var item in resultstring)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
 
-
-            /*
+            
             CustomList<int> sortListInt = new CustomList<int>();
             CustomList<int> sortListIntNEW = new CustomList<int>();
             CustomList<string> sortListStr = new CustomList<string>();
@@ -37,8 +48,9 @@ namespace CustomListProj
                 randInt = rand.GenerateRandomInt(0, 32);
                 sortListInt.Add(randInt);
             }
-
+            
             sortListInt.Sort();
+            
             foreach (var val in sortListInt)
             {
                 Console.WriteLine($"Print: {val}");

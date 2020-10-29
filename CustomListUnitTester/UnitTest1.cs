@@ -725,15 +725,15 @@ namespace CustomListUnitTester
         public void Sort_StringsMultiLingual_Test()
         {
             // Arrange // Controlled sort test with expected results
-            string expected = "ü"; //Der Deutsch Umlaute hast drietter gekommen 
+            string expected = "Холодильник"; //Der Deutsch Umlaute hast drietter gekommen 
             string actual;         //The German Umlaute comes third in this sort
 
             CustomList<string> sortListStrings = new CustomList<String>();
 
             // Act
-            sortListStrings.Add("A"); //0
-            sortListStrings.Add("z"); //1
-            sortListStrings.Add("ü"); //2
+            sortListStrings.Add("Холодильник"); //0
+            sortListStrings.Add("Amore"); //1
+            sortListStrings.Add("größenordnungsmäßig"); //2
             sortListStrings.Add("§"); //3
 
             sortListStrings.Sort();

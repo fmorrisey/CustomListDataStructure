@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace CustomListProj
-{
+{   /// <summary>
+/// 
+/// </summary>
+/// <typeparam name="T"></typeparam>
     public class CustomList<T> : IEnumerable  where T : IComparable
     {                            // Non_Generic    // Adds a constraint to
         // _Private Member Variables
@@ -59,6 +62,16 @@ namespace CustomListProj
 
         }
 
+        public CustomList(int setSize)
+        {
+            this._size = setSize;
+            _items = new T[_size];
+            this._count = 0;
+            
+        }
+        /// <summary>
+        /// <para>Provides a method for adding the input item to the end of the list based.</para>
+        /// </summary>
         public void Add(T value)
         {
 
@@ -74,7 +87,11 @@ namespace CustomListProj
             }
 
         }
-
+        /// <summary>
+        /// <para>Provides a method for removing a matching value from the list based on the arguments.</para>
+        /// <para>Note:</para>
+        /// <para>The first matching value is removed from the list, and will handle duplicates</para>
+        /// </summary>    
         public void Remove(T item)
         {
             int index = _count;
@@ -91,6 +108,11 @@ namespace CustomListProj
 
         }
 
+        /// <summary>
+        /// <para>Provides a method for removing a set item at the index specified in the parameter.</para>
+        /// <para>Note:</para>
+        /// <para>The first matching value is removed from the list, and will handle duplicates</para>
+        /// </summary>
         public void RemoveAt(int index)
         {
             try
@@ -153,17 +175,23 @@ namespace CustomListProj
             // takes in array and copies to other arrays
 
         }
-                
-        public void Sort()
+
+        /// <summary>
+        /// <para>Provides a method for sorting the list taking in no arguments.</para>
+        /// <para>Note:</para>
+        /// <para>This list is sorted based on the number of items in the list
+        /// using the first letter or character of the item.
+        /// Ascending and descending numerals to letters (ignores case)</para>
+        /// </summary>                
+        public void Sort() 
         {   // Once Called it passes the appropriate arguments into the BubbleSort
             // Later versions will choose sort algorithms based on size
-
             _items = BubbleSort(_items, _size);
         }
 
         private T[] BubbleSort(T[] sourceData, int length)
         {
-            // 
+            // Bubble Sort Algorithm that sorts numbers than letters
             length = _count;
             
             Comparer<T> comparer = Comparer<T>.Default;
@@ -182,8 +210,10 @@ namespace CustomListProj
             return sourceData;
         }
 
-
-        public override string ToString()
+        /// <summary>
+        /// <para>Provides a method to convert any data type to a return string.</para>
+        /// </summary>
+        public override string ToString() // Coverts Data Types to String Values
         {
             string buildString = "";
             foreach (var item in _items)
@@ -194,6 +224,75 @@ namespace CustomListProj
             return buildString;
         }
 
+        /// <summary>
+        /// Merges two lists using a Plus ( + ) Operator
+        /// 
+        /// The new list total count of both incoming lists.
+        /// </summary>
+
+        public static CustomList<T> operator +(CustomList<T> one, CustomList<T> two)
+        {
+            int newSize = (one.Count + two.Count);
+            
+            CustomList<T> result = new CustomList<T>(newSize);
+
+            for (int i = 0; i < one._count; i++)
+            {
+                result.Add(one[i]);
+            }
+            for (int j = 0; j < two._count; j++)
+            {
+                result.Add(two[j]);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Merges two lists into a new list that is returned and
+        /// the new list size is total the count of both incoming lists.
+        /// </summary>
+        public CustomList<T> CopyLists(CustomList<T> firstList, CustomList<T> secondList)
+        {   
+            int newSize = (firstList.Count + secondList.Count);
+
+            CustomList<T> result = new CustomList<T>(newSize);
+
+            for (int i = 0; i < firstList._count; i++)
+            {
+                result.Add(firstList[i]);
+            }
+            for (int j = 0; j < secondList._count; j++)
+            {
+                result.Add(secondList[j]);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Merges two lists using a Plus ( + ) Operator
+        /// 
+        /// The new list total count of both incoming lists.
+        /// </summary>
+
+        public static CustomList<T> operator -(CustomList<T> one, CustomList<T> two)
+        {
+            int newSize = (one.Count + two.Count);
+
+            CustomList<T> result = new CustomList<T>(newSize);
+
+            for (int i = 0; i < one._count; i++)
+            {
+                result.Add(one[i]);
+            }
+            for (int j = 0; j < two._count; j++)
+            {
+                result.Add(two[j]);
+            }
+
+            return result;
+        }
 
     }
 }
