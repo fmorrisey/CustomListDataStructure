@@ -127,7 +127,7 @@ namespace CustomListProj
 
             return destinationData; //return
         }
-
+       
         private T[] Copy(T[] sourceData, int sourceIndex, T[] destinationData, int destinationIndex, int length)
         {
             T[] transferData = new T[length];
@@ -153,32 +153,7 @@ namespace CustomListProj
             // takes in array and copies to other arrays
 
         }
-
-        private T[] Copy(T[] sourceData, T[] destinationData) // No longer used
-        {
-            // takes in array and copies to other arrays
-            T[] transferData = new T[_size];
-
-            try
-            {
-                for (int i = 0; i < (_size / 2); i++)
-                {
-                    transferData[i] = sourceData[i];
-                }
-                for (int i = 0; i < _size; i++)
-                {
-                    destinationData[i] = transferData[i];
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-
-                throw;
-            }
-
-            return destinationData;
-        }
-
+                
         public void Sort()
         {
             _items = BubbleSort(_items, _size);
