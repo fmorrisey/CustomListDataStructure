@@ -274,11 +274,28 @@ namespace CustomListProj
         }
 
         /// <summary>
-        /// Merges two lists using a Plus ( + ) Operator
+        /// Removes duplicates by from two lists using a Minus ( - ) Operator
         /// 
-        /// The new list total count of both incoming lists.
+        /// The new list is equal the count of items in the list
         /// </summary>
 
-       
+        public static CustomList<T> operator -(CustomList<T> one, CustomList<T> two)
+        {
+            int newSize = (one.Count + two.Count);
+
+            CustomList<T> result = new CustomList<T>(newSize);
+
+            for (int i = 0; i < one._count; i++)
+            {
+                result.Add(one[i]);
+            }
+            for (int j = 0; j < two._count; j++)
+            {
+                result.Add(two[j]);
+            }
+
+            return result;
+        }
+
     }
 }

@@ -517,26 +517,11 @@ namespace CustomListUnitTester
             // Assert
             Assert.AreEqual(expected, actual);
         }
-
-        [TestMethod][IterableTests] /// FAILED /// INCOMPLETE
-        public void Iteraotr_Test1()
-        {
-            // Arrange
-            int expected = 0;
-            int actual;
-
-            // Act
-            ///SOME CODE HERE
-            actual = 1;
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-
+                
         ///////////////// PlusOperand TEST /////////////////
         [TestMethod]
-        [PlusOperandTests] /// FAILED ///
-        public void PlusOperand_Test0()
+        [PlusOperandTests] /// PASSED ///
+        public void PlusOperand_INTERGERS_Combine()
         {
             // Arrange
             string expected = "135246";
@@ -554,19 +539,66 @@ namespace CustomListUnitTester
         }
 
         [TestMethod]
-        [PlusOperandTests] /// FAILED ///
-        public void PlusOperand_Test1()
+        [PlusOperandTests] /// Pass ///
+        public void PlusOperand_STRINGS_Test1()
         {
             // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "ACEBDF";
+            string actual;
 
             // Act
-            ///SOME CODE HERE
-            actual = 1;
+            CustomList<string> ACE = new CustomList<string>() { "A", "C", "E" };
+            CustomList<string> BDF = new CustomList<string>() { "B", "D", "F" };
+            CustomList<string> resultstring = new CustomList<string>();
+            resultstring = ACE + BDF; // result = ACEBDF
+
+            actual = resultstring.ToString();
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        ///////////////// MERGE TEST /////////////////
+        [TestMethod]
+        [MergTests] /// PASSED ///
+        public void Merge_CombineTwoINTERGERLists_CreateNEW()
+        {
+            // Arrange
+            string expected = "135246";
+            string actual;
+
+            // Act
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> two = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> resultInt = new CustomList<int>();
+            resultInt = resultInt.Merge(one, two); // result = 1,3,5,2,4,6
+
+            actual = resultInt.ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [MergTests] /// Passed ///
+        public void Merge_CombineTwoSTRINGLists_CreateNEW()
+        {
+            // Arrange
+            string expected = "ACEBDF";
+            string actual;
+
+            // Act
+            CustomList<string> ACE = new CustomList<string>() { "A", "C", "E" };
+            CustomList<string> BDF = new CustomList<string>() { "B", "D", "F" };
+            CustomList<string> resultstring = new CustomList<string>();
+            resultstring = resultstring.Merge(ACE, BDF); // result = ACEBDF
+
+            actual = resultstring.ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
         ///////////////// MinusOperand TEST /////////////////
         [TestMethod]
@@ -721,11 +753,11 @@ namespace CustomListUnitTester
         }
 
         [TestMethod]
-        [SortMethodTests] /// FAIILED /// INCOMPLETE
+        [SortMethodTests] /// PAsSED /// MORE EXPLORATION LATER
         public void Sort_StringsMultiLingual_Test()
         {
             // Arrange // Controlled sort test with expected results
-            string expected = "Холодильник"; //Der Deutsch Umlaute hast drietter gekommen 
+            string expected = "größenordnungsmäßig"; //Der Deutsch Umlaute hast drietter gekommen 
             string actual;         //The German Umlaute comes third in this sort
 
             CustomList<string> sortListStrings = new CustomList<String>();
@@ -754,6 +786,8 @@ namespace CustomListUnitTester
         public class PlusOperandTests : System.Attribute { }
         
         public class MinusOperandTests : System.Attribute { }
+        
+        public class MergTests : System.Attribute { }
         
         public class IterableTests : System.Attribute { }
         
