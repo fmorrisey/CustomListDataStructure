@@ -33,7 +33,13 @@ namespace CustomListProj
         }
 
         // Property
+        /// <summary>
+        /// Public get access to the numbered count of the items in the list. Cannot be modified external to the CustomList<T> collection.
+        /// </summary>
         public int Count { get { return _count; } }
+        /// <summary>
+        /// Public get and set access to the size of the underlying array.
+        /// </summary>
         public int Size
         {
             get { return _size; }
@@ -94,7 +100,7 @@ namespace CustomListProj
         }
         /// <summary>
         /// <para>Provides a method for removing a matching value from the list based on the arguments.</para>
-        /// <para>Note: The first matching value is removed from the list, and will NOT handle duplicates</para>
+        /// <para>Note: The first matching value is removed from the list, and will NOT handle duplicates.</para>
         /// </summary>    
         public void Remove(T item)
         {
@@ -113,7 +119,7 @@ namespace CustomListProj
         }
 
         /// <summary>
-        /// <para>Provides a method for removing an item at a set index specified in the parameter.</para>
+        /// <para>Provides a method for removing an item at a set index specified in the argument.</para>
         /// 
         /// </summary>
         public void RemoveAt(int index)
@@ -186,11 +192,11 @@ namespace CustomListProj
         }
 
         /// <summary>
-        /// <para>Provides a method for sorting the list taking in no arguments.</para>
+        /// <para>Provides a method for sorting the list making the method call.</para>
         /// <para>Note:</para>
         /// <para>This list is sorted based on the number of items in the list
         /// using the first letter or character of the item.
-        /// Ascending and descending numerals to letters (ignores case)</para>
+        /// Ascending and descending numerals to letters (ignores case).</para>
         /// </summary>                
         public void Sort()
         {   // Once Called it passes the appropriate arguments into the BubbleSort
@@ -283,11 +289,9 @@ namespace CustomListProj
                     for (int i = 0; i < firstList._count; i++)
                     {   // adds data from first list
                         resultList.Remove(secondList[i]);
-
                     }
                 }
-                resultList.Sort();
-
+                                
                 return resultList;
             }
             catch (IndexOutOfRangeException)
@@ -356,20 +360,20 @@ namespace CustomListProj
         }
 
         /// <summary>
-        /// <para>Provides a method to remove duplicates and truncates the list.</para>
-        /// <a
+        /// <para>Provides a method to remove duplicates and truncates the list. Using itself as the argument.</para>
+        /// <para>Return: when the method return is captured it will truncate the list size.
         /// </summary>
         public CustomList<T> RemoveDuplicates(CustomList<T> sourceData)
         {
             try
             {
 
-                int interCount = sourceData._count;
+                int interCount = sourceData.Count;
 
                 if (sourceData.Count == 0) { return sourceData; }  // Checks for empty lists
                 else
                 {
-                    for (int i = 0; i < sourceData._count; i++)
+                    for (int i = 0; i < sourceData.Count; i++)
                     {   // adds data from first list
                         sourceData.Remove(sourceData[i]);
                         interCount--;

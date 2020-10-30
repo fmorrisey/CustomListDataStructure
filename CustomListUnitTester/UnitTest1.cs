@@ -426,14 +426,13 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [RemoveMethodTests] /// PASSED!!! ///
+        [TestMethod] [RemoveMethodTests] /// PASSED!!! ///
         public void Remove_SearchAndRemoveItem_NOT_FOUND()
         {
             // Remove before expander
             // Arrange //
             CustomList<int> removeList = new CustomList<int>();
-            int expected = 0;
+            int expected = 2;
             int actual;
             int item = 2;
 
@@ -444,6 +443,7 @@ namespace CustomListUnitTester
             }                           // [0][1][2][0]
 
             removeList.Remove(5);       // Search Remove at 2
+            removeList.Remove(10);       // Search Remove at 2
             actual = removeList[2];     // Query at i2
 
             // Assert
@@ -623,19 +623,24 @@ namespace CustomListUnitTester
             Assert.AreEqual(expected, actual);
         }
 
-
         ///////////////// MinusOperand TEST /////////////////
         [TestMethod]
         [MinusOperandTests] /// FAILED ///
         public void MinusOperand_Test0()
         {
             // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "3500";
+            string actual;
 
             // Act
             ///SOME CODE HERE
-            actual = 1;
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> two = new CustomList<int>() { 2, 1, 6 };
+            CustomList<int> result = new CustomList<int>();
+            result = one - two;
+
+            actual = result.ToString();
+            
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -645,12 +650,55 @@ namespace CustomListUnitTester
         public void MinusOperand_Test1()
         {
             // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "35100000";
+            string actual;
 
             // Act
             ///SOME CODE HERE
-            actual = 1;
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5, 2, 1, 6 };
+            CustomList<int> two = new CustomList<int>() { 2, 1, 6, 1, 3, 5, };
+            CustomList<int> result = new CustomList<int>();
+            result = one - two;
+                      
+            actual = result.ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        ///////////////// RemoveDuplicates TEST /////////////////
+        [TestMethod]
+        [RemoveDuplicates] /// FAILED ///
+        public void RemoveDuplicates_01()
+        {
+            // Arrange
+            string expected = "124789";
+            string actual;
+            CustomList<int> dupeMe = new CustomList<int>() { 1, 1, 2, 2, 4, 4, 6, 7, 7, 8,8,9 };
+
+            // Act
+            ///SOME CODE HERE
+            dupeMe = dupeMe.RemoveDuplicates(dupeMe);
+            actual = dupeMe.ToString(); 
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [RemoveDuplicates] /// Passed ///
+        public void RemoveDuplicates_02()
+        {
+            string expected = "bLeppe";
+            string actual;
+            CustomList<string> dupeMe = new CustomList<string>() {"a", "b", "b", "L", "l", "e", "o", "pp", "o", "e" };
+
+            // Act
+            ///SOME CODE HERE
+            dupeMe = dupeMe.RemoveDuplicates(dupeMe);
+            actual = dupeMe.ToString();
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -660,13 +708,18 @@ namespace CustomListUnitTester
         [ZipperTests] /// FAILED ///
         public void Zipper_Test0()
         {
-            // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "111122335566";
+            string actual;
 
             // Act
             ///SOME CODE HERE
-            actual = 1;
+            CustomList<int> one = new CustomList<int>() { 1, 3, 5, 2, 1, 6 };
+            CustomList<int> two = new CustomList<int>() { 2, 1, 6, 1, 3, 5, };
+            CustomList<int> result = new CustomList<int>();
+            result = result.Zip(one, two);
+
+            actual = result.ToString();
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -675,13 +728,18 @@ namespace CustomListUnitTester
         [ZipperTests] /// FAILED ///
         public void Zipper_Test01()
         {
-            // Arrange
-            int expected = 0;
-            int actual;
+            string expected = "aabbbbeeeellLLoooopppp";
+            string actual;
 
             // Act
             ///SOME CODE HERE
-            actual = 1;
+            CustomList<string> one = new CustomList<string>() { "a", "b", "b", "L", "l", "e", "o", "pp", "o", "e" };
+            CustomList<string> two = new CustomList<string>() { "a", "b", "b", "L", "l", "e", "o", "pp", "o", "e" };
+            CustomList<string> result = new CustomList<string>();
+            result = result.Zip(one, two);
+
+            actual = result.ToString();
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -816,6 +874,8 @@ namespace CustomListUnitTester
         public class IterableTests : System.Attribute { }
         
         public class ZipperTests : System.Attribute { }
+        
+        public class RemoveDuplicates : System.Attribute { }
 
 
 

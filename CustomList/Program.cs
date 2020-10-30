@@ -13,43 +13,26 @@ namespace CustomListProj
         static void Main(string[] args)
         {
 
-            CustomList<int> dupeMe = new CustomList<int>() { 2, 2, 4, 4, 6 };
+            /// CUSTOMLIST ///            
+            CustomList<int> customList01 = new CustomList<int>() {1, 2, 3, 4, 5 };
+            CustomList<int> customList02 = new CustomList<int>() {6, 7, 8, 9, 10 };
+            CustomList<int> comboList = new CustomList<int>();
 
-            dupeMe.RemoveDuplicates(dupeMe);
-
-            foreach (var item in dupeMe)
-            {
-                Console.WriteLine(item);
-            }
-            Console.ReadLine();
-
-
-            CustomList<int> odd = new CustomList<int>() { 1, 3, 5 };
-            CustomList<int> even = new CustomList<int>() { 2, 4, 6 };
-            CustomList<int> contain = new CustomList<int>();
-            contain = contain.Zip(odd, even);
-
-            foreach (var item in contain)
-            {
-                Console.WriteLine(item);
-            }
-            Console.ReadLine();
-
+            customList01.Add(1);
+            customList01.Remove(1);
+            customList01.RemoveAt(0);
+           // customList01.RemoveDuplicates(customList01);
+            customList01.Sort();
             
-            
-            CustomList<string> ACE = new CustomList<string>() { "A", "C", "E" };
-            CustomList<string> BDF = new CustomList<string>() { "B", "D" , "F" };
-            CustomList<string> resultstring = new CustomList<string>();
-            resultstring = resultstring.Merge(ACE, BDF);
+            string str = customList01.ToString();
+            int count = customList01.Count;
+            int size = customList01.Size;
 
-            foreach (var item in resultstring)
-            {
-                Console.WriteLine(item);
-            }
-            Console.ReadLine();
-            
-
-
+            comboList = customList01 + customList02;
+            comboList = customList01 - customList02;
+            comboList = comboList.Merge(customList01, customList02);
+            comboList = customList01.Zip(customList01, customList02);
+                        
         }
     }
 }
