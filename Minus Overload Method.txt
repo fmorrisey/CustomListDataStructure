@@ -1,0 +1,51 @@
+Minus - Overload Method Documentation
+
+Removes the similar items from two lists and stores the results.
+
+C#
+public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+
+Parameters
+	List T
+	The collection of objects to be removed one the second list based on the first list.
+
+Returns
+CustomList<T> Collection
+  	A new CustomList collection is returned with the secondList items removed.
+
+Implements
+	Remove(T)
+
+Examples:
+ public class SpiceInventory()
+ {
+	CustomList<string> KyleSpices = new CustomList<string>()
+            {
+                "Cinnamon", "Pepper", "Paprika", "Gram Marsala", "Coriander" 
+            };
+            
+
+            CustomList<string> RyanSpices = new CustomList<string>()
+            {
+                "Vanilla", "Pepper", "Pumpkin", "Gram Marsala", "Saffron"
+            };
+
+            CustomList<string> combinedSpiceList = new CustomList<string>();
+            combinedSpiceList = KyleSpices - RyanSpices;
+            combinedSpiceList = KyleSpices - RyanSpices;
+
+            foreach (var item in combinedSpiceList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+
+	/* Console Output
+
+	Cinnamon	Paprika	Coriander
+	*/
+}
+
+Remarks
+the - overload does not truncate the return list so the entire underlying array is preserved. This may create excess data during Console.WriteLine().
+This will return an empty array if either lists passed through the parameters are empty.
