@@ -1,0 +1,53 @@
+Created by Forrest Morrisey ©2020
+
+CustomList Data Structure:
+
+
+
+The CustomList Data Structure is designed to replicate C# built-in List with simpler implementation. Works with all data types and objects using the T Generic feature of C# once the type is declared in the angle brackets append to the instantiation of the CustomList<DataType>.
+
+The CustomList has several private/internal member variables and public properties as follows.
+
+Private Member Variables
+	•	T[] _items , the internal array that the CustomList wraps around. Just like the built-in List data type, the initial _size is 4 and _count starts at 0.  
+	•	integer _count , keeps tracks of how many indexes in the _items array holds data. 
+	◦	Modified within the Add/Remove methods. 
+	•	integer _size , 	keeps track of the current capacity of the _items array. 
+	◦	Size is doubled only in the Expander Function. 
+
+Public Properties
+	•	T as an index is set using an indexer to index within the T[ ]_items array 
+	•	.Count {get;} : retrieves the current Count outside of the class but not modified. 
+	◦	Public get access to the numbered count of the items in the list. Cannot be modified external to the CustomList<T> collection. 
+	•	.Size {get; set;} : The current Size can be accessed outside of the class using an uppercase Size method call. 
+	◦	Public get and set access to the size of the underlying array. 
+Construtor
+	•	When instantiating a CustomList collection the developer has the option of using an overload to set the size of the underlying array. 
+
+Public Methods:
+	•	.Add(T) : Provides a method for adding an item to the end of the list. 
+	•	.Remove(T) : Provides a method for removing a matching value from the list based on the arguments but will NOT handle duplicates. 
+	•	.RemoveAt(T) :  Provides a method for removing an item at a set index specified in the argument. 
+	•	.RemoveDuplicates(T)  
+	•	.Sort(T) : The list is sorted based on the number of items in the list using the first letter or character of the item. Ascending and descending numerals to letters (ignores case). 
+	•	.ToString(T) : Provides a method to convert any data type to a return string 
+	•	+ overload operator : adds two lists together with modifying the original lists and returns the new combined list. The new list equals the total of the two lists. 
+	•	- overload operator : removes from the first list what the second list does not have without modifying the original list. Returns a new list. 
+	•	.Merge() : behaves like the plus overload but used as a method call with arguments. 
+	•	.Zip() : dependent on the Merge method but sorts the data afterward. 
+
+Private/internal Methods:
+	•	Copy function - Provides a method for transferring data from the source to the destination without adding additional items with strict parameters to control data. 
+	•	Expander - Provides a method for expanding the array size and transferring data from the source to the destination without adding additional items. 
+	•	BubbleSort -  An algorithm to move data around.  
+The Add, Remove, RemoveAt methods are called using the dot notation appended to the CustomList object name. 
+	•	The Add Method will take the data type placed within the method arguments and added to the end of the underlying array.  
+	•	The Remove Method, will search the underlying array for the matching value placed in the method arguments. Then send that index into the RemoveAt Method. 
+	•	The RemoveAt takes in a specified index, deleting the data, and fills in the default or gap in the array. Updates the count by subtracting one from the count. 
+The Expander and Copy functions are private/internal to the CustomList as external functionality has not been implemented. These functions are called starting in the Add method to increase the size of the internal underlying array once _size and _count match. 
+These two methods will use the existing array stored in the private member variable _items and create two new arrays to handle the data while these methods perform their functions called destinationData and transferData.
+The Expander function performs three tasks. The purpose is to expand the _items array to accommodate incoming data from the original method call.
+	1.	It creates a new array called destinationData that is twice the _size of the current array in use. If the _size is 16, it will double to 32. 64 will double to 128. 
+	2.	It  will call the Copy function and pass in relevant information to that method. The Copy arguments accept the currently used array stored in _items called sourceData, the new destination data, and the capacity of each. 
+	3.	It changes the global scope _size member variable to double the initial size.  
+	4.	Returns the new destinationData back the Add method. 
